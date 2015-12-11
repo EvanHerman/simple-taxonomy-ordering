@@ -1,7 +1,7 @@
 YIKES Inc. Simple Taxonomy Ordering
 =============
 
-This plugin is quite similar to [Simple Page Ordering](https://wordpress.org/plugins/simple-page-ordering/), but allows you to easily re-order taxonomies using drag and drop functionality, using the  all new term metadata included in WordPress v4.4.
+This plugin is quite similar to [Simple Page Ordering](https://wordpress.org/plugins/simple-page-ordering/), but allows you to easily re-order taxonomies using drag and drop functionality, using the new term meta included in WordPress v4.4.
 
 Installation
 ===========
