@@ -63,7 +63,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 						// confirm that the tax_position arg is set and no orderby param has been set
 						if( ! isset( $_GET['orderby'] ) && $this->is_taxonomy_position_enabled( $screen->taxonomy ) ) {
 							// enqueue our scripts/styles
-							$this->enqueue_scripts_and_styles();
+							$this->yikes_cto_enqueue_scripts_and_styles();
 							// ensure post types have tax_position set
 							add_filter( 'admin_init', array( $this, 'yikes_ensure_tax_position_set' ) );
 							// re-order the posts
@@ -89,7 +89,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 		*	Enqueue any scripts/styles we need
 		*	@since 0.1
 		*/
-		public function enqueue_scripts_and_styles() {
+		public function yikes_cto_enqueue_scripts_and_styles() {
 		
 			// styles
 			wp_enqueue_style( 'yikes-tax-drag-drop-styles', plugin_dir_url( __FILE__ ) . 'lib/css/yikes-tax-drag-drop.css' );
@@ -110,6 +110,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 		/*
 		*	Make sure each taxonomy has some tax_position set in term meta
 		*	if not, assign a value to 'tax_position' in wp_termmeta
+		*	@since 0.1
 		*/
 		public function yikes_ensure_terms_have_tax_position_value( $screen ) {
 			if( isset( $screen ) && isset( $screen->taxonomy ) ) {
@@ -131,7 +132,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 		public function yikes_alter_tax_order( $pieces, $taxonomies, $args ) {
 			foreach( $taxonomies as $taxonomy ) {
 				// confirm the tax is set to hierarchical -- else do not allow sorting
-				if( $this->is_taxonomy_position_enabled( $taxonomy ) ) {
+				if( $this->yikes_is_taxonomy_position_enabled( $taxonomy ) ) {
 					global $wpdb;
 					$pieces['join'] .= " INNER JOIN $wpdb->termmeta AS term_meta ON t.term_id = term_meta.term_id";
 					$pieces['orderby'] = "ORDER BY term_meta.meta_value";
@@ -159,7 +160,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 		*	@since 0.1
 		*	@return true/false
 		*/
-		public function is_taxonomy_position_enabled( $taxonomy_name ) {
+		public function yikes_is_taxonomy_position_enabled( $taxonomy_name ) {
 			// Confirm a taxonomy name was passed in
 			if( ! $taxonomy_name ) {
 				return false;
