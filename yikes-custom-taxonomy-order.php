@@ -101,7 +101,8 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 			// enqueue our custom script
 			wp_enqueue_script( 'yikes-tax-drag-drop', plugin_dir_url(__FILE__) . 'lib/js/yikes-tax-drag-drop.js', array( 'jquery-ui-core', 'jquery-ui-sortable' ), true );
 			wp_localize_script( 'yikes-tax-drag-drop', 'localized_data', array(
-				'ajax_url' => admin_url( 'admin-ajax.php' ),
+				'ajax_url' => esc_url( admin_url( 'admin-ajax.php' ) ),
+				'preloader_url' => esc_url( admin_url( 'images/wpspin_light.gif' ) ),
 			) );
 			
 		}
@@ -165,7 +166,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 			}
 			$tax_object = get_taxonomy( $taxonomy_name );
 			if( $tax_object && is_object( $tax_object ) ) {
-				if( $tax_object->tax_position ) {
+				if( isset( $tax_object->tax_position ) && $tax_object->tax_position ) {
 					return true;
 				} else {
 					return false;
