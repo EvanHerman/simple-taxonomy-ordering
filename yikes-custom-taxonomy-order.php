@@ -133,6 +133,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 			foreach( $taxonomies as $taxonomy ) {
 				// confirm the tax is set to hierarchical -- else do not allow sorting
 				if( $this->yikes_is_taxonomy_position_enabled( $taxonomy ) ) {
+					wp_die( print_r( $args ) );
 					global $wpdb;
 					$pieces['join'] .= " INNER JOIN $wpdb->termmeta AS term_meta ON t.term_id = term_meta.term_id";
 					$pieces['orderby'] = "ORDER BY term_meta.meta_value";
