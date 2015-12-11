@@ -12,7 +12,7 @@ This plugin is quite similar to [Simple Page Ordering](https://wordpress.org/plu
 #### Issues?
 If you're running into any issues, we would love to hear about it. Please head over to the [Simple Taxonomy Orering Issue Tracker](https://github.com/yikesinc/yikes-simple-taxonomy-ordering) and create a new issue.
 
-**Originally built by Evan Herman | Inspired by [Simple Page Ordering](https://wordpress.org/plugins/simple-page-ordering/)**
+**Originally built by YIKES Inc. | Inspired by [Simple Page Ordering](https://wordpress.org/plugins/simple-page-ordering/)**
 
 Changes
 =============
