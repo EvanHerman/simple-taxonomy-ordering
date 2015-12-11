@@ -78,4 +78,4 @@ Changes
 
 ===========
 
-**Originally built by Evan Herman | Inspired by [Simple Page Ordering](https://wordpress.org/plugins/simple-page-ordering/) by 10up.**
+**Built with &hearts; by YIKES Inc. in Philadelphia, PA | Inspired by [Simple Page Ordering](https://wordpress.org/plugins/simple-page-ordering/) by 10up.**
