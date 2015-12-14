@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: YIKES Custom Taxonomy Order
+Plugin Name: YIKES Simple Taxonomy Ordering
 Plugin URI: http://www.yikesinc.com
 Description: Custom drag & drop taxonomy ordering.
 Author: Yikes Inc., Evan Herman
@@ -47,6 +47,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 			add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array( $this, 'yikes_sto_plugin_action_links' ) );
 			// Include our options class
 			include plugin_dir_path(__FILE__) . 'lib/options.php';
+			add_action( 'load-edit-tags.php', array( $this, 'yikes_sto_custom_help_tab' ) );
 		}
 						
 		/*
@@ -77,6 +78,27 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 						}
 					}
 				}
+			}
+		}
+		
+		/**
+		*	Custom Help Tab
+		*	@since 0.1
+		*/
+		public function yikes_sto_custom_help_tab() {
+			$screen = get_current_screen();
+			// ensuere that our terms have a `tax_position` value set, so they display properly
+			$this->yikes_ensure_terms_have_tax_position_value( $screen );
+			// retreive a list of enabled taxonomies
+			$taxonomies = self::yikes_get_registered_taxonomies();
+			// confirm that the tax_position arg is set and no orderby param has been set
+			if( $this->yikes_is_taxonomy_position_enabled( $screen->taxonomy ) ) {
+				// Add my_help_tab if current screen is My Admin Page
+				$screen->add_help_tab( array(
+					'id'	=> 'yikes_sto_help_tab',
+					'title'	=> __( 'Taxonomy Ordering', 'yikes-inc-simple-taxonomy-ordering' ),
+					'content'	=> '<p>' . __( 'To reposition a taxonomy in the list, simply click on a taxonomy and drag & drop it into the desired position. Each time you reposition a taxonomy, the data will update in the database and on the front end of your site.', 'yikes-inc-simple-taxonomy-ordering' ) . '</p>' . '<p style="margin-left:0;"><em>' . __( 'Example', 'yikes-inc-simple-taxonomy-ordering' ) . ':</em></p><img style="width:75%;max-width:825px;" src="' . plugin_dir_URL(__FILE__) . 'lib/img/sort-category-help-example.gif" alt="' . __( 'Simple Taxonomy Ordering Demo', 'yikes-inc-simple-taxonomy-ordering' ) . '">',
+				) );
 			}
 		}
 		
