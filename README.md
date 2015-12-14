@@ -64,6 +64,10 @@ As mentioned above, the taxonomies need to have the parameter	`'tax_position' =>
 
 With the release of WordPress 4.4 came taxonomy meta data, which gets stored inside of the `wp_termmeta` table in the database. Each taxonomy is assigned an integer value related to it's position on the taxonomy list.
 
+Filters
+===========
+* `yikes_simple_taxonomy_ordering_capabilities` - Filter to adjust who can access the 'Simple Tax. Ordering' settings page.
+* `yikes_simple_taxonomy_ordering_ignored_taxonomies` - Filter to add additional taxonomies or remove default taxonomies. Items in this array will **not** be displayed in the dropdown on the settings page, and thus cannot have drag and drop sorting enabled. (defaults: 'nav_menu', 'link_category', 'post_format')
 
 Issues
 ===========

@@ -3,7 +3,7 @@
 Plugin Name: YIKES Custom Taxonomy Order
 Plugin URI: http://www.yikesinc.com
 Description: Custom drag & drop taxonomy ordering.
-Author: Evan Herman, Yikes Inc.
+Author: Yikes Inc., Evan Herman
 Version: 0.1
 Author URI: http://www.YikesInc.com
 Text Domain: yikes-custom-taxonomy-order
@@ -43,8 +43,12 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 			add_action( 'init', array( $this, 'yikes_custom_tax_order_front_end_init' ) );
 			// handle the AJAX request
 			add_action( 'wp_ajax_update_taxonomy_order', array( $this, 'yikes_handle_ajax_request' ) );
+			// add custom plugin links
+			add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array( $this, 'yikes_sto_plugin_action_links' ) );
+			// Include our options class
+			include plugin_dir_path(__FILE__) . 'lib/options.php';
 		}
-		
+						
 		/*
 		*	Init and load the files as needed
 		*	@since 0.1
@@ -60,10 +64,12 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 					if( $screen->base == 'edit-tags' ) {
 						// ensuere that our terms have a `tax_position` value set, so they display properly
 						$this->yikes_ensure_terms_have_tax_position_value( $screen );
+						// retreive a list of enabled taxonomies
+						$taxonomies = self::yikes_get_registered_taxonomies();
 						// confirm that the tax_position arg is set and no orderby param has been set
-						if( ! isset( $_GET['orderby'] ) && $this->is_taxonomy_position_enabled( $screen->taxonomy ) ) {
+						if( ! isset( $_GET['orderby'] ) && $this->yikes_is_taxonomy_position_enabled( $screen->taxonomy ) ) {
 							// enqueue our scripts/styles
-							$this->yikes_cto_enqueue_scripts_and_styles();
+							$this->yikes_sto_enqueue_scripts_and_styles();
 							// ensure post types have tax_position set
 							add_filter( 'admin_init', array( $this, 'yikes_ensure_tax_position_set' ) );
 							// re-order the posts
@@ -89,7 +95,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 		*	Enqueue any scripts/styles we need
 		*	@since 0.1
 		*/
-		public function yikes_cto_enqueue_scripts_and_styles() {
+		public function yikes_sto_enqueue_scripts_and_styles() {
 		
 			// styles
 			wp_enqueue_style( 'yikes-tax-drag-drop-styles', plugin_dir_url( __FILE__ ) . 'lib/css/yikes-tax-drag-drop.css' );
@@ -106,6 +112,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 			) );
 			
 		}
+		
 		
 		/*
 		*	Make sure each taxonomy has some tax_position set in term meta
@@ -154,7 +161,17 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 			exit;
 		}
 		
-		/*
+		/**
+		*	Add custom plugin links on the 'plugins.php' page
+		*	@since 0.1
+		*/
+		public function yikes_sto_plugin_action_links( $links ) {
+		   $links[] = '<a href="'. esc_url( get_admin_url(null, 'options-general.php?page=yikes-simple-taxonomy-ordering') ) .'" title="' . __( 'Simple Taxonomy Ordering Settings', 'yikes-inc-simple-taxonomy-ordering' ) . '">' . __( 'Settings', 'yikes-inc-simple-taxonomy-ordering' ) . '</a>';
+		   $links[] = '<a href="https://yikesplugins.com" target="_blank">' . __( 'More Plugins by YIKES', 'yikes-inc-simple-taxonomy-ordering' ) . '</a>';
+		   return $links;
+		}
+		
+		/**
 		*	Helper function to confirm 'tax_position' is set to true (allowing sorting of taxonomies)
 		*	eg: For an example on how to enable tax_position/sorting for taxonomies, please see:
 		*	@since 0.1
@@ -167,13 +184,44 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 			}
 			$tax_object = get_taxonomy( $taxonomy_name );
 			if( $tax_object && is_object( $tax_object ) ) {
-				if( isset( $tax_object->tax_position ) && $tax_object->tax_position ) {
+				// get saved taxonomies
+				$yikes_simple_tax_order_options = get_option( 'yikes_simple_taxonomy_ordering_options', array() );
+				$enabled_taxonomies = isset( $yikes_simple_tax_order_options['enabled_taxonomies'] ) ? $yikes_simple_tax_order_options['enabled_taxonomies'] : array();
+				// if 'tax_position' => true || is set on the settings page
+				if( isset( $tax_object->tax_position ) && $tax_object->tax_position || in_array( $taxonomy_name, $enabled_taxonomies ) ) {
 					return true;
 				} else {
 					return false;
 				}
 			}
 			return false;
+		}
+		
+		/**
+		*	Helper function to return an array of enabled drag and drop taxonomies
+		*	@since 0.1
+		*	@returns array of enabled taxonomes, or empty if none enabled
+		*/
+		public static function yikes_get_registered_taxonomies() {
+			// get ALL taxonomies on site
+			$registered_taxonomies = get_taxonomies();
+			// Array of taxonomies we want to exclude from being displayed in our options
+			$ignored_taxonomies = apply_filters( 'yikes_simple_taxonomy_ordering_ignored_taxonomies', array(
+				'nav_menu',
+				'link_category',
+				'post_format'
+			) );
+			// Strip Duplicate Taxonomies
+			foreach( $ignored_taxonomies as $ignored_tax ) {
+				if( in_array( $ignored_tax, $registered_taxonomies ) ) {
+					$location = array_search( $ignored_tax, $registered_taxonomies );
+					if( $location ) {
+						unset( $registered_taxonomies[$location] );
+					}
+				}
+			}
+			// return the taxonomies
+			return $registered_taxonomies;
 		}
 	
 	}
