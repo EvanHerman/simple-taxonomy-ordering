@@ -211,6 +211,24 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 				'link_category',
 				'post_format'
 			) );
+			// WooCommerce taxonomies
+			$ignored_taxonomies = array_merge( $ignored_taxonomies, apply_filters( 'yikes_simple_taxonomy_ordering_ignored_woocommerce_taxonomies', array(
+				'product_shipping_class',
+				'product_cat', // excluded because Woo has built in drag and drop support out of the box
+				'product_type',
+			) ) );
+			// Easy Digital Downloads taxonomies
+			$ignored_taxonomies = array_merge( $ignored_taxonomies, apply_filters( 'yikes_simple_taxonomy_ordering_ignored_edd_taxonomies', array(
+				'edd_log_type',
+			) ) );
+			// Strip Woocommerce product attributes
+			foreach( $registered_taxonomies as $registered_tax ) {
+				// strip all woocommerce product attributes
+				if ( strpos( $registered_tax, 'pa_' ) !== false) {
+					$location = array_search( $registered_tax, $registered_taxonomies );
+					unset( $registered_taxonomies[$location] );
+				}
+			}
 			// Strip Duplicate Taxonomies
 			foreach( $ignored_taxonomies as $ignored_tax ) {
 				if( in_array( $ignored_tax, $registered_taxonomies ) ) {
