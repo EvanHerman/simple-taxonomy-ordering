@@ -3,13 +3,13 @@
 Plugin Name: YIKES Simple Taxonomy Ordering
 Plugin URI: http://www.yikesinc.com
 Description: Custom drag & drop taxonomy ordering.
-Author: Yikes Inc., Evan Herman
+Author: YIKES Inc., Evan Herman, Tracy Levesque
 Version: 0.1
-Author URI: http://www.YikesInc.com
+Author URI: http://www.yikesinc.com
 Text Domain: simple-taxonomy-ordering
 */
 
-/*  Copyright 2015  Yikes Inc  (email : info@yikesinc.com)
+/*  Copyright 2015  YIKES, Inc  (email : info@yikesinc.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

@@ -1,15 +1,17 @@
 === Simple Taxonomy Ordering ===
-Contributors: yikesinc, eherman24
+Contributors: yikesinc, eherman24, liljimmi
 Tags: admin, term, meta, simple, order, taxonomy, metadata, termmeta, reorder
 Requires at least: 4.4
 Tested up to: 4.4
 Stable tag: 0.1
 
-Quickly and easily reorder taxonomies how you need with an easy to use and intuitive drag and drop interface.
+Quickly and easily reorder taxonomy terms with an easy to use and intuitive drag and drop interface.
 
 == Description ==
 
-Order all of the taxonomies on your site with a simple to use, intuitive drag and drop interface. Activate the plugin, enable your taxonomy on the settings page, and drag and drop the taxonomies into the desired position. It couldn't be easier.
+Order all of the taxonomy terms on your site with a simple to use, intuitive drag and drop interface. The plugin works for WordPress core taxonomies -- Categories and Tags -- and any custom taxonomies you have created.
+
+Activate the plugin, enable your taxonomy on the settings page, and drag and drop the taxonomies into the desired position. It couldn't be easier. 
 
 On the front end of the site your taxonomies will display in the order set in the dashboard.
 
