@@ -45,7 +45,7 @@ class YIKES_Simple_Taxonomy_Options
 	{	
 		?>
 			<style>.yikes-sto-review-star{ color: goldenrod; font-size: 15px; line-height: 1.3; width: 16px; }.yikes-review-link:hover { text-decoration: none !important; }</style>
-			<em><?php printf( __( 'Simple Taxonomy Ordering was created by %s. If you are enjoying it, please leave us a %s review</a>!', 'yikes-inc-simple-taxonomy-ordering' ), '<a href="yikesinc.com" target="_blank" class="yikes-review-link">YIKES</a>', '<a href="#" title="test" class="yikes-review-link"><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span>' ); ?></em>
+			<em><?php printf( __( 'Simple Taxonomy Ordering was created by %s. If you are enjoying it, please leave us a %s review</a>!', 'simple-taxonomy-ordering' ), '<a href="yikesinc.com" target="_blank" class="yikes-review-link">YIKES</a>', '<a href="#" title="test" class="yikes-review-link"><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span>' ); ?></em>
 		<?php
 	}
 	
@@ -57,8 +57,8 @@ class YIKES_Simple_Taxonomy_Options
         // This page will be under "Settings"
 		add_submenu_page( 
 			  'options-general.php', 
-			  __( 'Simple Tax. Ordering', 'yikes-inc-simple-taxonomy-ordering' ), 
-			  __( 'Simple Tax. Ordering', 'yikes-inc-simple-taxonomy-ordering' ),
+			  __( 'Simple Tax. Ordering', 'simple-taxonomy-ordering' ), 
+			  __( 'Simple Tax. Ordering', 'simple-taxonomy-ordering' ),
 			  apply_filters( 'yikes_simple_taxonomy_ordering_capabilities', 'manage_options' ),
 			  'yikes-simple-taxonomy-ordering',
 			  array( $this, 'create_admin_page' )
@@ -74,7 +74,7 @@ class YIKES_Simple_Taxonomy_Options
         $this->options = get_option( 'yikes_simple_taxonomy_ordering_options', array() );
         ?>
         <div class="wrap">
-            <h1><?php _e( 'YIKES Simple Taxonomy Ordering', 'yikes-inc-simple-taxonomy-ordering' ); ?></h1>          
+            <h1><?php _e( 'YIKES Simple Taxonomy Ordering', 'simple-taxonomy-ordering' ); ?></h1>          
             <form method="post" action="options.php">
             <?php
                 // This prints out all hidden setting fields
@@ -106,7 +106,7 @@ class YIKES_Simple_Taxonomy_Options
 
         add_settings_field(
             'enabled_taxonomies', // ID
-            __( 'Enabled Taxonomies', 'yikes-inc-simple-taxonomy-ordering' ), // Title 
+            __( 'Enabled Taxonomies', 'simple-taxonomy-ordering' ), // Title 
             array( $this, 'enabled_taxaonomies_callback' ), // Callback
             'yikes-simple-taxonomy-ordering', // Page
             'yikes_sto_setting_section' // Section           
@@ -119,7 +119,7 @@ class YIKES_Simple_Taxonomy_Options
      */
     public function yikes_sto_options_description()
     {
-        _e( 'Adjust the settings for YIKES Simple Taxonomy Ordering below.', 'yikes-inc-simple-taxonomy-ordering' );
+        _e( 'Adjust the settings for YIKES Simple Taxonomy Ordering below.', 'simple-taxonomy-ordering' );
     }
 
     /** 
@@ -148,10 +148,10 @@ class YIKES_Simple_Taxonomy_Options
 				<?php
 			}
 			?></select>
-			<p class="description"><?php _e( 'Select which taxonomies you would like to enable drag & drop sorting on.', 'yikes-inc-simple-taxonomy-ordering' ); ?></p>
+			<p class="description"><?php _e( 'Select which taxonomies you would like to enable drag & drop sorting on.', 'simple-taxonomy-ordering' ); ?></p>
 			<?php
 		} else {
-			_e( 'No Taxonomies Found.' ,'yikes-inc-simple-taxonomy-ordering' );
+			_e( 'No Taxonomies Found.' ,'simple-taxonomy-ordering' );
 		}
     }
 	

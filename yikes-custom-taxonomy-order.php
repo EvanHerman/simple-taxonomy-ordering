@@ -6,8 +6,7 @@ Description: Custom drag & drop taxonomy ordering.
 Author: Yikes Inc., Evan Herman
 Version: 0.1
 Author URI: http://www.YikesInc.com
-Text Domain: yikes-custom-taxonomy-order
-Domain Path: /languages
+Text Domain: simple-taxonomy-ordering
 */
 
 /*  Copyright 2015  Yikes Inc  (email : info@yikesinc.com)
@@ -96,8 +95,8 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 				// Add my_help_tab if current screen is My Admin Page
 				$screen->add_help_tab( array(
 					'id'	=> 'yikes_sto_help_tab',
-					'title'	=> __( 'Taxonomy Ordering', 'yikes-inc-simple-taxonomy-ordering' ),
-					'content'	=> '<p>' . __( 'To reposition a taxonomy in the list, simply click on a taxonomy and drag & drop it into the desired position. Each time you reposition a taxonomy, the data will update in the database and on the front end of your site.', 'yikes-inc-simple-taxonomy-ordering' ) . '</p>' . '<p style="margin-left:0;"><em>' . __( 'Example', 'yikes-inc-simple-taxonomy-ordering' ) . ':</em></p><img style="width:75%;max-width:825px;" src="' . plugin_dir_URL(__FILE__) . 'lib/img/sort-category-help-example.gif" alt="' . __( 'Simple Taxonomy Ordering Demo', 'yikes-inc-simple-taxonomy-ordering' ) . '">',
+					'title'	=> __( 'Taxonomy Ordering', 'simple-taxonomy-ordering' ),
+					'content'	=> '<p>' . __( 'To reposition a taxonomy in the list, simply click on a taxonomy and drag & drop it into the desired position. Each time you reposition a taxonomy, the data will update in the database and on the front end of your site.', 'simple-taxonomy-ordering' ) . '</p>' . '<p style="margin-left:0;"><em>' . __( 'Example', 'simple-taxonomy-ordering' ) . ':</em></p><img style="width:75%;max-width:825px;" src="' . plugin_dir_URL(__FILE__) . 'lib/img/sort-category-help-example.gif" alt="' . __( 'Simple Taxonomy Ordering Demo', 'simple-taxonomy-ordering' ) . '">',
 				) );
 			}
 		}
@@ -188,8 +187,8 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 		*	@since 0.1
 		*/
 		public function yikes_sto_plugin_action_links( $links ) {
-		   $links[] = '<a href="'. esc_url( get_admin_url(null, 'options-general.php?page=yikes-simple-taxonomy-ordering') ) .'" title="' . __( 'Simple Taxonomy Ordering Settings', 'yikes-inc-simple-taxonomy-ordering' ) . '">' . __( 'Settings', 'yikes-inc-simple-taxonomy-ordering' ) . '</a>';
-		   $links[] = '<a href="https://yikesplugins.com" target="_blank">' . __( 'More Plugins by YIKES', 'yikes-inc-simple-taxonomy-ordering' ) . '</a>';
+		   $links[] = '<a href="'. esc_url( get_admin_url(null, 'options-general.php?page=yikes-simple-taxonomy-ordering') ) .'" title="' . __( 'Simple Taxonomy Ordering Settings', 'simple-taxonomy-ordering' ) . '">' . __( 'Settings', 'simple-taxonomy-ordering' ) . '</a>';
+		   $links[] = '<a href="https://yikesplugins.com" target="_blank">' . __( 'More Plugins by YIKES', 'simple-taxonomy-ordering' ) . '</a>';
 		   return $links;
 		}
 		
