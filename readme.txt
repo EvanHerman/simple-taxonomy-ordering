@@ -13,7 +13,7 @@ Order all of the taxonomy terms on your site with a simple to use, intuitive dra
 
 Activate the plugin, enable your taxonomy on the settings page, and drag and drop the taxonomies into the desired position. It couldn't be easier. 
 
-On the front end of the site your taxonomies will display in the order set in the dashboard.
+On the front end of the site your taxonomy terms will display in the order set in the dashboard.
 
 Integrates well with <a href="https://wordpress.org/plugins/easy-digital-downloads/">Easy Digital Downloads</a> and <a href="https://wordpress.org/plugins/woocommerce/">WooCommerce</a>, allowing you to re-order product categories and terms.
 
