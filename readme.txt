@@ -17,6 +17,8 @@ Integrates well with <a href="https://wordpress.org/plugins/easy-digital-downloa
 
 We've also built in support within the plugin itself. On the edit taxonomy page, click on the 'Help' tab in the top right of the screen to display additional help.
 
+<strong>Requires WordPress 4.4 or later, due to the use of the term meta.</strong>
+
 == Other Notes ==
 
 **Filters**

@@ -82,4 +82,4 @@ Changes
 
 ===========
 
-**Built with <span style="color: #F3A4B2;">&hearts;</span> by YIKES Inc. in Philadelphia, PA | Inspired by [Simple Page Ordering](https://wordpress.org/plugins/simple-page-ordering/) by 10up.**
+**Built with <span style="color: #F3A4B2;">&hearts;</span> by YIKES Inc. in Philadelphia, PA**
