@@ -162,7 +162,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 				// confirm the tax is set to hierarchical -- else do not allow sorting
 				if( $this->yikes_is_taxonomy_position_enabled( $taxonomy ) ) {
 					global $wpdb;
-					$pieces['join'] .= " INNER JOIN $wpdb->termmeta AS term_meta ON t.term_id = term_meta.term_id";
+					$pieces['join'] .= " INNER JOIN $wpdb->termmeta AS term_meta ON t.term_id = term_meta.term_id AND term_meta.meta_key = 'tax_position'";
 					$pieces['orderby'] = "ORDER BY term_meta.meta_value";
 				}
 			}
