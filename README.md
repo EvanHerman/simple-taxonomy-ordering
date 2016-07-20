@@ -76,9 +76,11 @@ If you're running into any issues, we would love to hear about it. Please head o
 Changes
 ===========
 
+### v1.0 - July 20th, 2016
+* Altered the SQL query clause, run when re-ordering terms.
+
 ### v0.1 - December 11th, 2015
 * Initial Release
-
 
 ===========
 

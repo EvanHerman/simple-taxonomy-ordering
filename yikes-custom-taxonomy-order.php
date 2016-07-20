@@ -31,10 +31,10 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 
 	// Yep Yep!
 	class Yikes_Custom_Taxonomy_Order {
-		
+
 		/*
 		*	Main Constructor
-		*/	
+		*/
 		function __construct() {
 			// admin init
 			add_action( 'admin_head', array( $this, 'yikes_custom_tax_order_admin_init' ) );
@@ -48,7 +48,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 			include plugin_dir_path(__FILE__) . 'lib/options.php';
 			add_action( 'load-edit-tags.php', array( $this, 'yikes_sto_custom_help_tab' ) );
 		}
-						
+
 		/*
 		*	Init and load the files as needed
 		*	@since 0.1
@@ -79,7 +79,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 				}
 			}
 		}
-		
+
 		/**
 		*	Custom Help Tab
 		*	@since 0.1
@@ -100,7 +100,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 				) );
 			}
 		}
-		
+
 		/*
 		*	Properly order the taxonomies on the front end
 		*	@since 0.1
@@ -111,30 +111,30 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 				add_filter( 'terms_clauses', array( $this, 'yikes_alter_tax_order' ), 10, 3 );
 			}
 		}
-		
+
 		/*
 		*	Enqueue any scripts/styles we need
 		*	@since 0.1
 		*/
 		public function yikes_sto_enqueue_scripts_and_styles() {
-		
+
 			// styles
 			wp_enqueue_style( 'yikes-tax-drag-drop-styles', plugin_dir_url( __FILE__ ) . 'lib/css/yikes-tax-drag-drop.css' );
-			
+
 			// enqueue jquery ui drag and drop
 			wp_enqueue_script( 'jquery-ui-core' );
 			wp_enqueue_script( 'jquery-ui-sortable' );
-			
+
 			// enqueue our custom script
 			wp_enqueue_script( 'yikes-tax-drag-drop', plugin_dir_url(__FILE__) . 'lib/js/yikes-tax-drag-drop.js', array( 'jquery-ui-core', 'jquery-ui-sortable' ), true );
 			wp_localize_script( 'yikes-tax-drag-drop', 'localized_data', array(
 				'ajax_url' => esc_url( admin_url( 'admin-ajax.php' ) ),
 				'preloader_url' => esc_url( admin_url( 'images/wpspin_light.gif' ) ),
 			) );
-			
+
 		}
-		
-		
+
+
 		/*
 		*	Make sure each taxonomy has some tax_position set in term meta
 		*	if not, assign a value to 'tax_position' in wp_termmeta
@@ -152,7 +152,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 				}
 			}
 		}
-		
+
 		/*
 		*	Re-Order the taxonomies based on the tax_position value
 		*	@since 0.1
@@ -168,10 +168,10 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 			}
 			return $pieces;
 		}
-			
-		/* 
-		*	Handle The AJAX Request 
-		*	@since 0.1		
+
+		/*
+		*	Handle The AJAX Request
+		*	@since 0.1
 		*/
 		public function yikes_handle_ajax_request() {
 			$array_data = $_POST['updated_array'];
@@ -181,7 +181,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 			wp_die();
 			exit;
 		}
-		
+
 		/**
 		*	Add custom plugin links on the 'plugins.php' page
 		*	@since 0.1
@@ -191,7 +191,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 		   $links[] = '<a href="https://yikesplugins.com" target="_blank">' . __( 'More Plugins by YIKES', 'simple-taxonomy-ordering' ) . '</a>';
 		   return $links;
 		}
-		
+
 		/**
 		*	Helper function to confirm 'tax_position' is set to true (allowing sorting of taxonomies)
 		*	eg: For an example on how to enable tax_position/sorting for taxonomies, please see:
@@ -217,7 +217,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 			}
 			return false;
 		}
-		
+
 		/**
 		*	Helper function to return an array of enabled drag and drop taxonomies
 		*	@since 0.1
@@ -262,9 +262,9 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 			// return the taxonomies
 			return $registered_taxonomies;
 		}
-	
+
 	}
-	
+
 }
 
 // init
