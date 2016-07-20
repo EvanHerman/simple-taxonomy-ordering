@@ -4,7 +4,7 @@ Plugin Name: YIKES Simple Taxonomy Ordering
 Plugin URI: http://www.yikesinc.com
 Description: Custom drag & drop taxonomy ordering.
 Author: YIKES Inc., Evan Herman, Tracy Levesque
-Version: 0.1
+Version: 1.0
 Author URI: http://www.yikesinc.com
 Text Domain: simple-taxonomy-ordering
 */
@@ -163,7 +163,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 				if( $this->yikes_is_taxonomy_position_enabled( $taxonomy ) ) {
 					global $wpdb;
 					$pieces['join'] .= " INNER JOIN $wpdb->termmeta AS term_meta ON t.term_id = term_meta.term_id AND term_meta.meta_key = 'tax_position'";
-					$pieces['orderby'] = "ORDER BY term_meta.meta_value";
+					$pieces['orderby'] = "term_meta.meta_value";
 				}
 			}
 			return $pieces;
