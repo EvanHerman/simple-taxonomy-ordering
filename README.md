@@ -75,6 +75,8 @@ If you're running into any issues, we would love to hear about it. Please head o
 
 Changes
 ===========
+### v1.1 - July 26th, 2016
+* Reverted to old query, added missing ORDER BY argument.
 
 ### v1.0 - July 20th, 2016
 * Altered the SQL query clause, run when re-ordering terms.
