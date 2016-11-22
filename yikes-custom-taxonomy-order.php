@@ -3,10 +3,11 @@
 Plugin Name: YIKES Simple Taxonomy Ordering
 Plugin URI: http://www.yikesinc.com
 Description: Custom drag & drop taxonomy ordering.
-Author: YIKES Inc., Evan Herman, Tracy Levesque
+Author: YIKES Inc., Evan Herman, Tracy Levesque, Kevin Utz
 Version: 1.1
 Author URI: http://www.yikesinc.com
 Text Domain: simple-taxonomy-ordering
+Domain Path: /languages
 */
 
 /*  Copyright 2015  YIKES, Inc  (email : info@yikesinc.com)
@@ -47,6 +48,9 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 			// Include our options class
 			include plugin_dir_path(__FILE__) . 'lib/options.php';
 			add_action( 'load-edit-tags.php', array( $this, 'yikes_sto_custom_help_tab' ) );
+
+			// i18n
+			add_action( 'plugins_loaded', array( $this, 'yikes_sto_load_plugin_textdomain' ) );
 		}
 
 		/*
@@ -134,6 +138,16 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 
 		}
 
+		/**
+		*	Register the textdomain for proper i18n / l10n
+		*	@since 1.2
+		*/
+		public function yikes_sto_load_plugin_textdomain() {
+			load_plugin_textdomain(
+				'simple-taxonomy-ordering',
+				false,
+			);
+		}
 
 		/*
 		*	Make sure each taxonomy has some tax_position set in term meta
