@@ -146,6 +146,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 			load_plugin_textdomain(
 				'simple-taxonomy-ordering',
 				false,
+				plugin_dir_path(__FILE__) . 'languages/'
 			);
 		}
 
