@@ -4,7 +4,7 @@ Plugin Name: YIKES Simple Taxonomy Ordering
 Plugin URI: http://www.yikesinc.com
 Description: Custom drag & drop taxonomy ordering.
 Author: YIKES Inc., Evan Herman, Tracy Levesque, Kevin Utz
-Version: 1.2.2
+Version: 1.2.3
 Author URI: http://www.yikesinc.com
 Text Domain: simple-taxonomy-ordering
 Domain Path: /languages
@@ -177,11 +177,31 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 				// confirm the tax is set to hierarchical -- else do not allow sorting
 				if( $this->yikes_is_taxonomy_position_enabled( $taxonomy ) ) {
 					global $wpdb;
-					$pieces['join'] .= " INNER JOIN $wpdb->termmeta AS term_meta ON t.term_id = term_meta.term_id AND term_meta.meta_key = 'tax_position'";
+
+					$join_statement = " INNER JOIN $wpdb->termmeta AS term_meta ON t.term_id = term_meta.term_id AND term_meta.meta_key = 'tax_position'";
+
+					if ( ! $this->yikes_does_substring_exist( $pieces['join'], $join_statement ) ) {
+						$pieces['join'] .= $join_statement;
+					}
 					$pieces['orderby'] = "ORDER BY CAST( term_meta.meta_value AS UNSIGNED )";
 				}
 			}
 			return $pieces;
+		}
+
+		/**
+		* Check if a substring exists inside a string
+		*
+		* @since 1.2.3
+		*
+		* @param string | $string	 | The main string (haystack) we're searching in
+		* @param string | $substring | The substring we're searching for
+		* @return bool  | T || F 	 | True if substring exists, else false
+		*/
+		protected function yikes_does_substring_exist( $string, $substring ) {
+
+			// Check if the $substring exists already in the $string
+			return ( strstr( $string, $substring ) === false ) ? false : true;
 		}
 
 		/*
