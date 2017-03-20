@@ -2,8 +2,8 @@
 Contributors: yikesinc, eherman24, liljimmi, yikesitskevin
 Tags: admin, term, meta, simple, order, taxonomy, metadata, termmeta, reorder
 Requires at least: 4.4
-Tested up to: 4.7
-Stable tag: 1.2.3
+Tested up to: 4.7.3
+Stable tag: 1.2.4
 
 Quickly and easily reorder taxonomy terms with an easy to use and intuitive drag and drop interface.
 
@@ -27,6 +27,10 @@ We've also built in support within the plugin itself. On the edit taxonomy page,
 
 * yikes-mailchimp-form-title-FORM_ID - alter the output of the form title of the specified form
 
+**Query Usage**
+
+* If you're trying to query for taxonomy terms (e.g. using `WP_Query` or functions like `get_terms()`), and you'd like them to be returned in the order specified by the plugin, you need to add the tax_position parameter in your call. For example: `'meta_key' => 'tax_position'` and  `'orderby' => 'tax_position'`. Thanks to @certainlyakey on GitHub for pointing this out.
+
 == Screenshots ==
 
 1. Simple Taxonomy Ordering settings page, allows you to specify which taxonomy you want to enable drag & drop ordering on.
@@ -41,6 +45,9 @@ We've also built in support within the plugin itself. On the edit taxonomy page,
 * Profit
 
 == Changelog ==
+
+= 1.2.4 = 
+* Fixed a JS issue that occurs when HTML is added to category description. A big thanks to @mateuszbajak for finding this and fixing it!
 
 = 1.2.3 = 
 * Fixed a bug where the same SQL join statement was being added to a query twice on the front end (props to @burisk for calling this out)
