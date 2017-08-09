@@ -2,8 +2,8 @@
 Contributors: yikesinc, eherman24, liljimmi, yikesitskevin
 Tags: admin, term, meta, simple, order, taxonomy, metadata, termmeta, reorder
 Requires at least: 4.4
-Tested up to: 4.7.3
-Stable tag: 1.2.4
+Tested up to: 4.8.1
+Stable tag: 1.2.5
 
 Quickly and easily reorder taxonomy terms with an easy to use and intuitive drag and drop interface.
 
@@ -45,6 +45,9 @@ We've also built in support within the plugin itself. On the edit taxonomy page,
 * Profit
 
 == Changelog ==
+
+= 1.2.5 =
+* Fixed an issue where terms weren't being returned if the termmeta table was empty. A big thanks to @doppiogancio on GitHub for finding this and helping us reach the solution.
 
 = 1.2.4 = 
 * Fixed a JS issue that occurs when HTML is added to category description. A big thanks to @mateuszbajak for finding this and fixing it!
