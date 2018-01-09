@@ -3,8 +3,8 @@
 Plugin Name: YIKES Simple Taxonomy Ordering
 Plugin URI: http://www.yikesinc.com
 Description: Custom drag & drop taxonomy ordering.
-Author: YIKES Inc., Evan Herman, Tracy Levesque, Kevin Utz
-Version: 1.2.5
+Author: YIKES, Inc.
+Version: 1.2.6
 Author URI: http://www.yikesinc.com
 Text Domain: simple-taxonomy-ordering
 Domain Path: /languages
@@ -131,7 +131,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 
 			// enqueue our custom script
 			wp_enqueue_script( 'yikes-tax-drag-drop', plugin_dir_url(__FILE__) . 'lib/js/yikes-tax-drag-drop.js', array( 'jquery-ui-core', 'jquery-ui-sortable' ), true );
-			wp_localize_script( 'yikes-tax-drag-drop', 'localized_data', array(
+			wp_localize_script( 'yikes-tax-drag-drop', 'simple_taxonomy_ordering_data', array(
 				'ajax_url' => esc_url( admin_url( 'admin-ajax.php' ) ),
 				'preloader_url' => esc_url( admin_url( 'images/wpspin_light.gif' ) ),
 			) );
