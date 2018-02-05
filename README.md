@@ -31,8 +31,8 @@ function add_tax_position_support( $args, $taxonomy, $object_type ) {
 }
 ```
 
-#### Custom Post Types
-Alternatively, if you've defined a [custom post type](https://codex.wordpress.org/Post_Types) that you'd like to allow drag & drop sorting on, you'll want to pass in a `tax_position` parameter to the `$args` array inside of [register_taxonomy](https://codex.wordpress.org/Function_Reference/register_taxonomy). You can place this line directly after `'hierarchical'`.
+#### Custom Taxonomies
+Alternatively, if you've defined a custom taxonomy that you'd like to allow drag & drop sorting on, you'll want to pass in a `tax_position` parameter to the `$args` array inside of [register_taxonomy](https://codex.wordpress.org/Function_Reference/register_taxonomy). You can place this line directly after `'hierarchical'`.
 
 [Example Snippet](https://gist.github.com/EvanHerman/170e2a46db4cecdeb607)
 
