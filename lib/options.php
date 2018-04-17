@@ -135,12 +135,12 @@ class YIKES_Simple_Taxonomy_Options
 		if( $taxonomies ) {
 			?><select class="js-example-basic-multiple" multiple="multiple" style="width:75%;min-width:300px;" name="yikes_simple_taxonomy_ordering_options[enabled_taxonomies][]"><?php
 			foreach( $taxonomies as $taxonomy ) {
-				$tax_object = get_taxonomy( $taxonomy ); // get the taxonomy object
-				$tax_name = ( $tax_object ) ? $tax_object->labels->name : $taxonomy; // Setup the taxonomy name
-				$post_type = ( $tax_object ) ? $tax_object->object_type[0] : 'post'; // setup post type
+				$tax_object       = get_taxonomy( $taxonomy ); // get the taxonomy object
+				$tax_name         = $tax_object && isset( $tax_object->labels ) ? $tax_object->labels->name : $taxonomy; // Setup the taxonomy name
+				$post_type        = $tax_object && isset( $tax_object->object_type ) && isset( $tax_object->object_type[0] ) ? $tax_object->object_type[0] : 'post'; // setup post type
 				$post_type_object = get_post_type_object( $post_type ); // get post type object
-				$post_type_label = $post_type_object->labels->name; // get the post type name
-				$selected = ( isset( $this->options['enabled_taxonomies'] ) && in_array( $taxonomy, $this->options['enabled_taxonomies'] ) ) ? 'selected' : ''; // setup the selected option
+				$post_type_label  = $post_type_object->labels->name; // get the post type name
+				$selected         = ( isset( $this->options['enabled_taxonomies'] ) && in_array( $taxonomy, $this->options['enabled_taxonomies'] ) ) ? 'selected' : ''; // setup the selected option
 				?>
 					<option value="<?php echo $taxonomy; ?>" <?php echo $selected; ?>>
 						<?php echo $tax_name . ' <small>(' . $post_type_label . ')</small>'; ?>

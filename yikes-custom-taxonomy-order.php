@@ -4,7 +4,7 @@ Plugin Name: YIKES Simple Taxonomy Ordering
 Plugin URI: http://www.yikesinc.com
 Description: Custom drag & drop taxonomy ordering.
 Author: YIKES, Inc.
-Version: 1.2.6
+Version: 1.2.7
 Author URI: http://www.yikesinc.com
 Text Domain: simple-taxonomy-ordering
 Domain Path: /languages
