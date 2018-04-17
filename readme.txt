@@ -2,8 +2,8 @@
 Contributors: yikesinc, eherman24, liljimmi, yikesitskevin
 Tags: admin, term, meta, simple, order, taxonomy, metadata, termmeta, reorder
 Requires at least: 4.4
-Tested up to: 4.9.1
-Stable tag: 1.2.6
+Tested up to: 4.9.5
+Stable tag: 1.2.7
 
 Quickly and easily reorder taxonomy terms with an easy to use and intuitive drag and drop interface.
 
@@ -45,6 +45,9 @@ We've also built in support within the plugin itself. On the edit taxonomy page,
 * Profit
 
 == Changelog ==
+
+= 1.2.7 =
+* Added some variable checks to prevent PHP Notices.
 
 = 1.2.6 =
 * Changed the global (localized) JS variable from `localized_data` to `simple_taxonomy_ordering_data` to avoid any potential conflicts.
