@@ -27,7 +27,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 
 			// Setup.
 			$this->define_constants();
-			$this->include();
+			$this->include_files();
 
 			// Hooks.
 			add_action( 'admin_head', array( $this, 'admin_order_terms' ) );
@@ -65,7 +65,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 		/**
 		 * Include our files.
 		 */
-		private function include() {
+		private function include_files() {
 			include YIKES_STO_PATH . 'lib/options.php';
 		}
 
