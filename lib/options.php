@@ -91,10 +91,7 @@ class YIKES_Simple_Taxonomy_Options {
 	 * Register and add settings.
 	 */
 	public function yikes_sto_options_init() {
-		register_setting(
-			'yikes_sto_option_group',
-			'YIKES_STO_OPTION_NAME'
-		);
+		register_setting( 'yikes_sto_option_group', YIKES_STO_OPTION_NAME );
 
 		add_settings_section(
 			'yikes_sto_setting_section',
@@ -116,7 +113,7 @@ class YIKES_Simple_Taxonomy_Options {
 	 * Print the Options Page Description.
 	 */
 	public function yikes_sto_options_description() {
-		esc_html_e( 'Adjust the settings for YIKES Simple Taxonomy Ordering below.', 'simple-taxonomy-ordering' );
+		esc_html_e( 'Enable or disable taxonomies from being orderable by using the dropdown.', 'simple-taxonomy-ordering' );
 	}
 
 	/**
