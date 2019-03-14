@@ -15,17 +15,9 @@ Activate the plugin, enable your taxonomy on the settings page, and drag and dro
 
 On the front end of the site your taxonomy terms will display in the order set in the dashboard.
 
-Integrates well with <a href="https://wordpress.org/plugins/easy-digital-downloads/">Easy Digital Downloads</a> and <a href="https://wordpress.org/plugins/woocommerce/">WooCommerce</a>, allowing you to re-order product categories and terms.
-
-We've also built in support within the plugin itself. On the edit taxonomy page, click on the 'Help' tab in the top right of the screen to display additional help.
-
-<strong>Requires WordPress 4.4 or later, due to the use of the term meta.</strong>
+<strong>Requires WordPress 4.4 or later due to the use of the term meta.</strong>
 
 == Other Notes ==
-
-**Filters**
-
-* yikes-mailchimp-form-title-FORM_ID - alter the output of the form title of the specified form
 
 **Query Usage**
 
@@ -47,7 +39,7 @@ We've also built in support within the plugin itself. On the edit taxonomy page,
 == Changelog ==
 
 = 2.0.2 =
-* Fixed footer callout text URLs and placement. It should only display on the settings page.
+* Fixed footer callout URLs and placement. It should only display on the settings page now.
 
 = 2.0.1 =
 * Fixed an issue with PHP versions < 7 (renaming class method from `include` to `include_files`).
