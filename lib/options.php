@@ -17,18 +17,27 @@ class YIKES_Simple_Taxonomy_Options {
 	 * Start up.
 	 */
 	public function __construct() {
-		add_action( 'admin_menu', array( $this, 'yikes_sto_options_page' ) );
-		add_action( 'admin_init', array( $this, 'yikes_sto_options_init' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'yikes_sto_options_scripts_and_styles' ) );
-		add_action( 'admin_footer_text', array( $this, 'yikes_sto_filter_footer_function' ) );
+		add_action( 'admin_menu', array( $this, 'define_options_page' ) );
+		add_action( 'admin_init', array( $this, 'init_options' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
+		add_action( 'admin_footer_text', array( $this, 'footer_callout' ) );
+	}
+
+	/**
+	 * Determine whether this is our settings page.
+	 *
+	 * @return bool True if we're on our settings page.
+	 */
+	private function is_settings_page() {
+		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : '';
+		return ! empty( $screen ) && ! empty( $screen->base ) && $screen->base === 'settings_page_yikes-simple-taxonomy-ordering';
 	}
 
 	/**
 	 * Add additiona scripts and styles as needed.
 	 */
-	public function yikes_sto_options_scripts_and_styles() {
-		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : '';
-		if ( ! empty( $screen ) && ! empty( $screen->base ) && $screen->base === 'settings_page_yikes-simple-taxonomy-ordering' ) {
+	public function enqueue_assets() {
+		if ( $this->is_settings_page() ) {
 			$min = yikes_sto_maybe_minified();
 			wp_enqueue_style( 'select2.min.css', plugin_dir_url( __FILE__ ) . 'css/select2.min.css', array(), YIKES_STO_VERSION, 'all' );
 			wp_enqueue_script( 'select2.min.js', plugin_dir_url( __FILE__ ) . 'js/select2.full.min.js', array( 'jquery' ), YIKES_STO_VERSION, true );
@@ -39,23 +48,27 @@ class YIKES_Simple_Taxonomy_Options {
 	/**
 	 * Filter the footer text and add custom text asking for review.
 	 */
-	public function yikes_sto_filter_footer_function() {
-		?>
-			<style>.yikes-sto-review-star{ color: goldenrod; font-size: 15px; line-height: 1.3; width: 16px; }.yikes-review-link:hover { text-decoration: none !important; }</style>
-			<em>
-				<?php
-					/* translators: placeholders are links */
-					printf( esc_html__( 'Simple Taxonomy Ordering was created by %1$s. If you are enjoying it, please leave us a %2$s review!', 'simple-taxonomy-ordering' ), '<a href="yikesplugins.com" target="_blank" class="yikes-review-link">YIKES, Inc.</a>', '<a href="https://wordpress.org/support/plugin/simple-taxonomy-ordering/reviews/?rate=5#new-post" target="_blank" class="yikes-review-link"><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span></a>' );
-				?>
-			</em>
-		<?php
+	public function footer_callout() {
+
+		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : '';
+		if ( $this->is_settings_page() ) {
+			?>
+				<style>.yikes-sto-review-star{ color: goldenrod; font-size: 15px; line-height: 1.3; width: 16px; }.yikes-review-link:hover { text-decoration: none !important; }</style>
+				<em>
+					<?php
+						/* translators: placeholders are links */
+						printf( esc_html__( 'Simple Taxonomy Ordering was created by %1$s. If you are enjoying it, please leave us a %2$s review!', 'simple-taxonomy-ordering' ), '<a href="//www.yikesplugins.com" target="_blank" class="yikes-review-link">YIKES, Inc.</a>', '<a href="https://wordpress.org/support/plugin/simple-taxonomy-ordering/reviews/?rate=5#new-post" target="_blank" class="yikes-review-link"><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span></a>' );
+					?>
+				</em>
+			<?php
+		}
 	}
 
 	/**
 	 * Add options page.
 	 */
-	public function yikes_sto_options_page() {
-		// This page will be under "Settings".
+	public function define_options_page() {
+		// This page will be under "Settings."
 		add_submenu_page(
 			'options-general.php',
 			__( 'Simple Tax. Ordering', 'simple-taxonomy-ordering' ),
@@ -90,13 +103,13 @@ class YIKES_Simple_Taxonomy_Options {
 	/**
 	 * Register and add settings.
 	 */
-	public function yikes_sto_options_init() {
+	public function init_options() {
 		register_setting( 'yikes_sto_option_group', YIKES_STO_OPTION_NAME );
 
 		add_settings_section(
 			'yikes_sto_setting_section',
 			'',
-			array( $this, 'yikes_sto_options_description' ),
+			array( $this, 'options_header_text' ),
 			'yikes-simple-taxonomy-ordering'
 		);
 
@@ -112,7 +125,7 @@ class YIKES_Simple_Taxonomy_Options {
 	/**
 	 * Print the Options Page Description.
 	 */
-	public function yikes_sto_options_description() {
+	public function options_header_text() {
 		esc_html_e( 'Enable or disable taxonomies from being orderable by using the dropdown.', 'simple-taxonomy-ordering' );
 	}
 
