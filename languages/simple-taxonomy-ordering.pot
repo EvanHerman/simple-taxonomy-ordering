@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the simple-taxonomy-ordering package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: simple-taxonomy-ordering 1.2.0\n"
+"Project-Id-Version: simple-taxonomy-ordering 2.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-22 17:28+0000\n"
+"POT-Creation-Date: 2019-03-14 08:30-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,11 +21,11 @@ msgstr ""
 #: lib/options.php:48
 #, php-format
 msgid ""
-"Simple Taxonomy Ordering was created by %s. If you are enjoying it, please "
-"leave us a %s review</a>!"
+"Simple Taxonomy Ordering was created by %1$s. If you are enjoying it, please "
+"leave us a %2$s review!"
 msgstr ""
 
-#: lib/options.php:60 lib/options.php:61
+#: lib/options.php:61 lib/options.php:62
 msgid "Simple Tax. Ordering"
 msgstr ""
 
@@ -33,20 +33,21 @@ msgstr ""
 msgid "YIKES Simple Taxonomy Ordering"
 msgstr ""
 
-#: lib/options.php:109
+#: lib/options.php:105
 msgid "Enabled Taxonomies"
 msgstr ""
 
-#: lib/options.php:122
-msgid "Adjust the settings for YIKES Simple Taxonomy Ordering below."
+#: lib/options.php:116
+msgid ""
+"Enable or disable taxonomies from being orderable by using the dropdown."
 msgstr ""
 
-#: lib/options.php:151
+#: lib/options.php:144
 msgid ""
 "Select which taxonomies you would like to enable drag & drop sorting on."
 msgstr ""
 
-#: lib/options.php:154
+#: lib/options.php:147
 msgid "No Taxonomies Found."
 msgstr ""
 
@@ -70,33 +71,33 @@ msgstr[1] ""
 msgid "yyyy-mm-dd"
 msgstr ""
 
-#: yikes-custom-taxonomy-order.php:102
+#: yikes-custom-taxonomy-order.php:94
 msgid "Taxonomy Ordering"
 msgstr ""
 
-#: yikes-custom-taxonomy-order.php:103
+#: yikes-custom-taxonomy-order.php:95
 msgid ""
 "To reposition a taxonomy in the list, simply click on a taxonomy and drag & "
 "drop it into the desired position. Each time you reposition a taxonomy, the "
 "data will update in the database and on the front end of your site."
 msgstr ""
 
-#: yikes-custom-taxonomy-order.php:103
+#: yikes-custom-taxonomy-order.php:95
 msgid "Example"
 msgstr ""
 
-#: yikes-custom-taxonomy-order.php:103
+#: yikes-custom-taxonomy-order.php:95
 msgid "Simple Taxonomy Ordering Demo"
 msgstr ""
 
-#: yikes-custom-taxonomy-order.php:205
+#: yikes-custom-taxonomy-order.php:230
 msgid "Simple Taxonomy Ordering Settings"
 msgstr ""
 
-#: yikes-custom-taxonomy-order.php:205
+#: yikes-custom-taxonomy-order.php:230
 msgid "Settings"
 msgstr ""
 
-#: yikes-custom-taxonomy-order.php:206
+#: yikes-custom-taxonomy-order.php:231
 msgid "More Plugins by YIKES"
 msgstr ""

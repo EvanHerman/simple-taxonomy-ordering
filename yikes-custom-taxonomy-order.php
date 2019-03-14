@@ -4,7 +4,7 @@
  * Plugin URI: http://www.yikesinc.com
  * Description: Custom drag & drop taxonomy ordering.
  * Author: YIKES, Inc.
- * Version: 2.0.0
+ * Version: 2.0.1
  * Author URI: http://www.yikesinc.com
  * Text Domain: simple-taxonomy-ordering
  * Domain Path: /languages
@@ -42,7 +42,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 		 */
 		private function define_constants() {
 			if ( ! defined( 'YIKES_STO_VERSION' ) ) {
-				define( 'YIKES_STO_VERSION', '2.0.0' );
+				define( 'YIKES_STO_VERSION', '2.0.1' );
 			}
 
 			if ( ! defined( 'YIKES_STO_PATH' ) ) {
@@ -227,7 +227,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 		 * @param array $links Array of plugin action links.
 		 */
 		public function plugin_action_links( $links ) {
-			$links[] = '<a href="' . esc_url( get_admin_url( 'options-general.php?page=yikes-simple-taxonomy-ordering' ) ) . '" title="' . esc_attr__( 'Simple Taxonomy Ordering Settings', 'simple-taxonomy-ordering' ) . '">' . esc_html__( 'Settings', 'simple-taxonomy-ordering' ) . '</a>';
+			$links[] = '<a href="' . esc_url( admin_url( 'options-general.php?page=yikes-simple-taxonomy-ordering' ) ) . '" title="' . esc_attr__( 'Simple Taxonomy Ordering Settings', 'simple-taxonomy-ordering' ) . '">' . esc_html__( 'Settings', 'simple-taxonomy-ordering' ) . '</a>';
 			$links[] = '<a href="https://yikesplugins.com" target="_blank">' . esc_html__( 'More Plugins by YIKES', 'simple-taxonomy-ordering' ) . '</a>';
 			return $links;
 		}

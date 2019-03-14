@@ -3,7 +3,7 @@ Contributors: yikesinc, eherman24, liljimmi, yikesitskevin
 Tags: admin, term, meta, simple, order, taxonomy, metadata, termmeta, reorder
 Requires at least: 4.4
 Tested up to: 5.1.1
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 
 Quickly and easily reorder taxonomy terms with an easy to use and intuitive drag and drop interface.
 
@@ -45,6 +45,12 @@ We've also built in support within the plugin itself. On the edit taxonomy page,
 * Profit
 
 == Changelog ==
+
+= 2.0.1 =
+* Fixed an issue with PHP versions < 7 (renaming class method from `include` to `include_files`).
+* Fixed an issue where new taxonomies were not being saved.
+* Fixed an issue where the plugin's action link to the settings page was going to the admin dashboard.
+* Updated the plugin's pot file with the proper text domain.
 
 = 2.0.0 =
 * Completely rewrote the plugin: it is now fully WPCS linted, assets are minified, inline styles and javascript have been removed, nonces are included in AJAX requests.

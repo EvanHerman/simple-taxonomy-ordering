@@ -33,7 +33,7 @@ module.exports = function(grunt) {
 
     pot: {
       options: {
-        text_domain: 'wp-rest-api-controller', 
+        text_domain: 'simple-taxonomy-ordering', 
         dest: 'languages/', 
             keywords: [
               '__:1',
