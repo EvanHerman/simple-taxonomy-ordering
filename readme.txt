@@ -3,7 +3,7 @@ Contributors: yikesinc, eherman24, liljimmi, yikesitskevin
 Tags: admin, term, meta, simple, order, taxonomy, metadata, termmeta, reorder
 Requires at least: 4.4
 Tested up to: 5.1.1
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 
 Quickly and easily reorder taxonomy terms with an easy to use and intuitive drag and drop interface.
 
@@ -37,6 +37,9 @@ On the front end of the site your taxonomy terms will display in the order set i
 * Profit
 
 == Changelog ==
+
+= 2.0.3 =
+* Fixed uninstall method. The plugin should now uninstall and clean up after itself without error.
 
 = 2.0.2 =
 * Fixed footer callout URLs and placement. It should only display on the settings page now.
