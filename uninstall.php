@@ -19,4 +19,4 @@ delete_option( 'yikes_simple_taxonomy_ordering_options' );
 
 // Delete `tax_position` term meta from the DB.
 global $wpdb;
-$wpdb->execute( "DELETE FROM $wpdb->termmeta WHERE meta_key = 'tax_position'" );
+$wpdb->query( "DELETE FROM $wpdb->termmeta WHERE meta_key = 'tax_position'" );
