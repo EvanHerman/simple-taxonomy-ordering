@@ -218,6 +218,9 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 
 				update_term_meta( $order_data['term_id'], 'tax_position', ( (int) $order_data['order'] + (int) $base_index ) );
 			}
+
+			do_action( 'yikes_sto_taxonomy_order_updated', $taxonomy_ordering_data, $base_index );
+
 			wp_send_json_success();
 		}
 
