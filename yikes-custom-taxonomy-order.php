@@ -21,6 +21,30 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 	class Yikes_Custom_Taxonomy_Order {
 
 		/**
+		 * Unique instance of this plugin.
+		 *
+		 * @var Yikes_Custom_Taxonomy_Order
+		 */
+		private static $instance;
+
+		/**
+		 * Return an instance of our plugin.
+		 *
+		 * @return Yikes_Custom_Taxonomy_Order
+		 */
+		public static function get_instance() {
+
+			if ( null === self::$instance ) {
+
+				self::$instance = new self();
+
+			}
+
+			return self::$instance;
+
+		}
+
+		/**
 		 * Main Constructor.
 		 */
 		public function __construct() {
@@ -66,7 +90,9 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 		 * Include our files.
 		 */
 		private function include_files() {
-			include YIKES_STO_PATH . 'lib/options.php';
+			if ( ! class_exists( 'YIKES_Simple_Taxonomy_Options' ) ) {
+				include YIKES_STO_PATH . 'lib/options.php';
+			}
 		}
 
 		/**
@@ -148,7 +174,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 		private function get_max_taxonomy_order( $tax_slug ) {
 			global $wpdb;
 			$max_term_order = $wpdb->get_col(
-				$wpdb->prepare( 
+				$wpdb->prepare(
 					"SELECT MAX( CAST( tm.meta_value AS UNSIGNED ) )
 					FROM $wpdb->terms t
 					JOIN $wpdb->term_taxonomy tt ON t.term_id = tt.term_id AND tt.taxonomy = '%s'
@@ -257,7 +283,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 	}
 }
 
-new Yikes_Custom_Taxonomy_Order();
+$yikes_custom_taxonomy_order = Yikes_Custom_Taxonomy_Order::get_instance();
 
 /**
  * Return .min if SCRIPT_DEBUG is not defined.

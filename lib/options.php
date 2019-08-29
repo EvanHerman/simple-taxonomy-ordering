@@ -87,7 +87,7 @@ class YIKES_Simple_Taxonomy_Options {
 		$this->options = get_option( YIKES_STO_OPTION_NAME, array() );
 		?>
 		<div class="wrap">
-			<h1><?php esc_html_e( 'YIKES Simple Taxonomy Ordering', 'simple-taxonomy-ordering' ); ?></h1>          
+			<h1><?php esc_html_e( 'YIKES Simple Taxonomy Ordering', 'simple-taxonomy-ordering' ); ?></h1>
 			<form method="post" action="options.php">
 			<?php
 				// This prints out all hidden setting fields.
@@ -215,6 +215,4 @@ class YIKES_Simple_Taxonomy_Options {
 	}
 }
 
-if ( is_admin() ) {
-	$yikes_sto_settings = new YIKES_Simple_Taxonomy_Options();
-}
+$yikes_sto_settings = new YIKES_Simple_Taxonomy_Options();
