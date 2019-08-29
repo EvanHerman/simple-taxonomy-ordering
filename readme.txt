@@ -38,6 +38,9 @@ On the front end of the site your taxonomy terms will display in the order set i
 
 == Changelog ==
 
+= 2.1.0 =
+* Singleton Pattern. This approach makes removing the filter, which sets the custom order, a lot easier.
+
 = 2.0.3 =
 * Fixed uninstall method. The plugin should now uninstall and clean up after itself without error.
 
