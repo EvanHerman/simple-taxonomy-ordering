@@ -3,7 +3,7 @@ Contributors: yikesinc, eherman24, liljimmi, yikesitskevin
 Tags: admin, term, meta, simple, order, taxonomy, metadata, termmeta, reorder
 Requires at least: 4.4
 Tested up to: 5.1.1
-Stable tag: 2.0.3
+Stable tag: 2.1.0
 
 Quickly and easily reorder taxonomy terms with an easy to use and intuitive drag and drop interface.
 
