@@ -262,14 +262,18 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 		}
 
 		/**
-		 * Check if ordering has been enabled for this taxonomy.
+		 * Is Taxonomy Ordering Enabled.
 		 *
-		 * @param string $tax_slug A taxonomy's slug.
-		 *
-		 * @return bool True if ordering is enabled.
+		 * @param string $tax_slug the taxnomies slug.
 		 */
 		public function is_taxonomy_ordering_enabled( $tax_slug ) {
-			$option = array_flip( get_option( YIKES_STO_OPTION_NAME, array( 'enabled_taxonomies' => array() ) )['enabled_taxonomies'] );
+			$option_default = array( 'enabled_taxonomies' => array() );
+			$option         = get_option( YIKES_STO_OPTION_NAME, $option_default );
+
+			if ( isset( $option['enabled_taxonomies'] ) ) {
+				$option = array_flip( $option['enabled_taxonomies'] );
+			}
+
 			return isset( $option[ $tax_slug ] );
 		}
 
