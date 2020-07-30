@@ -272,9 +272,12 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 
 			if ( isset( $option['enabled_taxonomies'] ) ) {
 				$option = array_flip( $option['enabled_taxonomies'] );
+
+				return isset( $option[ $tax_slug ] );
 			}
 
-			return isset( $option[ $tax_slug ] );
+			// Return false if the option doesn't exist.
+			return false;
 		}
 
 		/**
