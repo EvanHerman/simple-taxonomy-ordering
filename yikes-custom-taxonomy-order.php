@@ -127,7 +127,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 		 * Order the taxonomies on the front end.
 		 */
 		public function front_end_order_terms() {
-			if ( ! is_admin() ) {
+			if ( ! is_admin() && apply_filters( 'yikes_simple_taxonomy_ordering_front_end_order_terms', true ) ) {
 				add_filter( 'terms_clauses', array( $this, 'set_tax_order' ), 10, 3 );
 			}
 		}
