@@ -17,7 +17,7 @@
     "grunt-contrib-cssmin": "^3.0.0",
     "grunt-contrib-uglify": "^4.0.1",
     "grunt-pot": "^0.3.0",
-    "lodash": ">=4.17.13",
+    "lodash": ">=4.17.19",
     "minimatch": ">=3.0.2"
   }
 }
