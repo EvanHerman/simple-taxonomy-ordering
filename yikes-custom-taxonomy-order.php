@@ -4,7 +4,7 @@
  * Plugin URI: http://www.yikesinc.com
  * Description: Custom drag & drop taxonomy ordering.
  * Author: YIKES, Inc.
- * Version: 2.3.0
+ * Version: 2.3.1
  * Author URI: http://www.yikesinc.com
  * Text Domain: simple-taxonomy-ordering
  * Domain Path: /languages
@@ -66,7 +66,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 		 */
 		private function define_constants() {
 			if ( ! defined( 'YIKES_STO_VERSION' ) ) {
-				define( 'YIKES_STO_VERSION', '2.3.0' );
+				define( 'YIKES_STO_VERSION', '2.3.1' );
 			}
 
 			if ( ! defined( 'YIKES_STO_PATH' ) ) {
