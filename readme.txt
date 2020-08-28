@@ -38,6 +38,9 @@ On the front end of the site your taxonomy terms will display in the order set i
 
 == Changelog ==
 
+= 2.3.2 =
+* Fixes column span bug present after updating to WordPress 5.5.
+
 = 2.3.0 =
 * Fixes bug with illegal string offset when disabling taxonomies under certain conditions.
 
