@@ -1,7 +1,7 @@
 {
   "name": "simple-taxonomy-ordering",
   "title": "YIKES Simple Taxonomy Ordering",
-  "version": "2.3.2",
+  "version": "2.4.0-BETA",
   "description": "This plugin offers a UI to enable/disable endpoints and meta data for CPTs and taxonomies using WordPress' REST API.",
   "main": "index.js",
   "scripts": {
