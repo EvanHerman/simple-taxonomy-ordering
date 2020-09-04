@@ -144,13 +144,16 @@ class YIKES_Simple_Taxonomy_Options {
 				$tax_name         = $tax_object && isset( $tax_object->labels ) ? $tax_object->labels->name : $taxonomy;
 				$post_type        = $tax_object && isset( $tax_object->object_type ) && isset( $tax_object->object_type[0] ) ? $tax_object->object_type[0] : 'post';
 				$post_type_object = get_post_type_object( $post_type );
-				$post_type_label  = $post_type_object->labels->name;
-				$selected         = isset( $this->options['enabled_taxonomies'] ) && isset( $enabled[ $taxonomy ] ) ? 'selected="selected"' : '';
-				?>
-					<option value="<?php echo esc_attr( $taxonomy ); ?>" <?php echo esc_attr( $selected ); ?>>
-						<?php echo esc_html( $tax_name ) . ' <small>(' . esc_html( $post_type_label ) . ')</small>'; ?>
-					</option>
-				<?php
+
+				if ( $post_type_object ) {
+					$post_type_label  = $post_type_object->labels->name;
+					$selected         = isset( $this->options['enabled_taxonomies'] ) && isset( $enabled[ $taxonomy ] ) ? 'selected="selected"' : '';
+					?>
+						<option value="<?php echo esc_attr( $taxonomy ); ?>" <?php echo esc_attr( $selected ); ?>>
+							<?php echo esc_html( $tax_name ) . ' <small>(' . esc_html( $post_type_label ) . ')</small>'; ?>
+						</option>
+					<?php
+				}
 			}
 			?>
 			</select>
@@ -181,6 +184,8 @@ class YIKES_Simple_Taxonomy_Options {
 			'product_cat',
 			'product_type',
 			'edd_log_type',
+			'term_translations',
+			'post_translations',
 		);
 
 		/**
