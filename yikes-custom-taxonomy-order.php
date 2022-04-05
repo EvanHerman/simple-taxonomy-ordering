@@ -54,7 +54,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 			$this->include_files();
 
 			// Hooks.
-			add_action( 'admin_head', array( $this, 'admin_order_terms' ) );
+			add_action( 'current_screen', array( $this, 'admin_order_terms' ) );
 			add_action( 'init', array( $this, 'front_end_order_terms' ) );
 			add_action( 'wp_ajax_yikes_sto_update_taxonomy_order', array( $this, 'update_taxonomy_order' ) );
 			add_filter( 'plugin_action_links_' . YIKES_STO_NAME, array( $this, 'plugin_action_links' ) );
@@ -98,13 +98,13 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 		/**
 		 * Order the terms on the admin side.
 		 */
-		public function admin_order_terms() {
-			$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : '';
-
-			if ( ! isset( $_GET['orderby'] ) && ! empty( $screen ) && ! empty( $screen->base ) && $screen->base === 'edit-tags' && $this->is_taxonomy_ordering_enabled( $screen->taxonomy ) ) {
+		public function admin_order_terms( WP_Screen $screen ) {
+			// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Form data is not being used.
+			if ( empty( $_GET['orderby'] ) && 'edit-tags' === $screen->base && $this->is_taxonomy_ordering_enabled( $screen->taxonomy ) ) {
 				$this->enqueue();
 				$this->default_term_order( $screen->taxonomy );
 				$this->yikes_sto_custom_help_tab();
+
 				add_filter( 'terms_clauses', array( $this, 'set_tax_order' ), 10, 3 );
 			}
 		}
