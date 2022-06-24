@@ -9,4 +9,5 @@ phpcs.xml
 .stylelintignore
 .eslintrc.js
 build/
+.dev/
 .DS_Store

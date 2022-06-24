@@ -4,7 +4,10 @@ module.exports = {
 		"browser": true,
 		"es2021": true
 	},
-	"ignorePatterns": ["lib/js/*.min.js"],
+	"ignorePatterns": [
+		"lib/js/*.min.js",
+		"lib/js/select2.js"
+	],
 	"globals": {
 		"lityScriptData": true,
 		"jQuery": true
