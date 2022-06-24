@@ -54,7 +54,7 @@ Frequently Asked Questions
 
 Indeed, you can! You'll have to assign the `'tax_position'` parameter to the taxonomy. You can do this easily, using the following [sample code snippet](https://gist.github.com/EvanHerman/4e83fda88d2b210dce95).
 
-**You'll note in the code snippet, the taxonomy we are using is 'category' - but you can change this value to suit your needs.**
+**You'll notice in the code snippet, the taxonomy we are using is 'category' - but you can change this value to suit your needs.**
 
 ### I have a custom post type, but it won't let me drag and drop sort it's taxonomies. How come?
 
@@ -67,23 +67,12 @@ With the release of WordPress 4.4 came taxonomy meta data, which gets stored ins
 Filters
 ===========
 * `yikes_simple_taxonomy_ordering_capabilities` - Filter to adjust who can access the 'Simple Tax. Ordering' settings page.
-* `yikes_simple_taxonomy_ordering_ignored_taxonomies` - Filter to add additional taxonomies or remove default taxonomies. Items in this array will **not** be displayed in the dropdown on the settings page, and thus cannot have drag and drop sorting enabled. (defaults: 'nav_menu', 'link_category', 'post_format')
+* `yikes_simple_taxonomy_ordering_excluded_taxonomies` - Filter to add additional taxonomies or remove default taxonomies. Items in this array will **not** be displayed in the dropdown on the settings page, and thus cannot have drag and drop sorting enabled. (defaults: 'nav_menu', 'link_category', 'post_format')
 
 Issues
 ===========
-If you're running into any issues, we would love to hear about it. Please head over to the [Simple Taxonomy Orering Issue Tracker](https://github.com/yikesinc/yikes-simple-taxonomy-ordering) and create a new issue.
-
-Changes
-===========
-### v1.1 - July 26th, 2016
-* Reverted to old query, added missing ORDER BY argument.
-
-### v1.0 - July 20th, 2016
-* Altered the SQL query clause, run when re-ordering terms.
-
-### v0.1 - December 11th, 2015
-* Initial Release
+If you're running into any issues, we would love to hear about it. Please head over to the [Simple Taxonomy Ordering Issue Tracker](https://github.com/yikesinc/yikes-simple-taxonomy-ordering) and create a new issue.
 
 ===========
 
-**Built with <span style="color: #F3A4B2;">&hearts;</span> by YIKES Inc. in Philadelphia, PA**
+<div style="text-align:center;font-weight:bold;">Originally built with <span style="color: #F3A4B2;">&hearts;</span> by YIKES Inc. in Philadelphia, PA.<br />Now Maintained by Evan Herman in Lancaster, PA</div>

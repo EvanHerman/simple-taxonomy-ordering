@@ -1,13 +1,13 @@
 <?php
 /**
- * Plugin Name: YIKES Simple Taxonomy Ordering
- * Plugin URI: http://www.yikesinc.com
+ * Plugin Name: Simple Taxonomy Ordering
  * Description: Custom drag & drop taxonomy ordering.
- * Author: YIKES, Inc.
+ * Author: Evan Herman
  * Version: 2.3.4
- * Author URI: http://www.yikesinc.com
+ * Author URI: https://www.evan-herman.com
  * Text Domain: simple-taxonomy-ordering
  * Domain Path: /languages
+ * Tested up to: 6.0
  *
  * @package YIKES_Simple_Taxonomy_Ordering
  */
@@ -57,8 +57,8 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 			add_action( 'current_screen', array( $this, 'admin_order_terms' ) );
 			add_action( 'init', array( $this, 'front_end_order_terms' ) );
 			add_action( 'wp_ajax_yikes_sto_update_taxonomy_order', array( $this, 'update_taxonomy_order' ) );
-			add_filter( 'plugin_action_links_' . YIKES_STO_NAME, array( $this, 'plugin_action_links' ) );
 			add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
+
 		}
 
 		/**
@@ -84,6 +84,10 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 			if ( ! defined( 'YIKES_STO_OPTION_NAME' ) ) {
 				define( 'YIKES_STO_OPTION_NAME', 'yikes_simple_taxonomy_ordering_options' );
 			}
+
+			if ( ! defined( 'YIKES_STO_SELECT2_VERSION' ) ) {
+				define( 'YIKES_STO_SELECT2_VERSION', '4.1.0-rc.0' );
+			}
 		}
 
 		/**
@@ -97,6 +101,8 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 
 		/**
 		 * Order the terms on the admin side.
+		 *
+		 * @param Object WP_Screen $screen Current screen object.
 		 */
 		public function admin_order_terms( WP_Screen $screen ) {
 			// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Form data is not being used.
@@ -113,11 +119,26 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 		 * Add a help tab to the taxonomy screen.
 		 */
 		public function yikes_sto_custom_help_tab() {
-			$screen = get_current_screen();
+			$screen   = get_current_screen();
+			$taxonomy = function_exists( 'get_current_screen' ) ? get_current_screen()->taxonomy : '';
+			$options  = get_option( YIKES_STO_OPTION_NAME, array() );
+
+			// Only show the help tab on enabled taxonomies.
+			if ( empty( $taxonomy ) || empty( $options ) || ! isset( $options['enabled_taxonomies'] ) || ! in_array( $taxonomy, $options['enabled_taxonomies'], true ) ) {
+				return;
+			}
+
+			$taxonomy       = get_taxonomy( $taxonomy );
+			$taxonomy_label = isset( $taxonomy->labels->singular_name ) ? $taxonomy->labels->singular_name : $taxonomy->labels;
+
 			$screen->add_help_tab(
 				array(
 					'id'      => 'yikes_sto_help_tab',
-					'title'   => __( 'Taxonomy Ordering', 'simple-taxonomy-ordering' ),
+					'title'   => sprintf(
+						/* translators: %s is the taxonomy singular name. eg: Category */
+						__( '%s Ordering', 'simple-taxonomy-ordering' ),
+						esc_attr( $taxonomy_label )
+					),
 					'content' => '<p>' . __( 'To reposition a taxonomy in the list, simply click on a taxonomy and drag & drop it into the desired position. Each time you reposition a taxonomy, the data will update in the database and on the front end of your site.', 'simple-taxonomy-ordering' ) . '</p><p style="margin-left:0;"><em>' . __( 'Example', 'simple-taxonomy-ordering' ) . ':</em></p><img style="width:75%;max-width:825px;" src="' . YIKES_STO_URL . 'lib/img/sort-category-help-example.gif" alt="' . __( 'Simple Taxonomy Ordering Demo', 'simple-taxonomy-ordering' ) . '">',
 				)
 			);
@@ -136,7 +157,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 		 * Enqueue assets.
 		 */
 		public function enqueue() {
-			$min = yikes_sto_maybe_minified();
+			$min = SCRIPT_DEBUG ? '' : '.min';
 			$tax = function_exists( 'get_current_screen' ) ? get_current_screen()->taxonomy : '';
 			wp_enqueue_style( 'yikes-tax-drag-drop-styles', YIKES_STO_URL . "lib/css/yikes-tax-drag-drop{$min}.css", array(), YIKES_STO_VERSION, 'all' );
 			wp_enqueue_script( 'yikes-tax-drag-drop', YIKES_STO_URL . "lib/js/yikes-tax-drag-drop{$min}.js", array( 'jquery-ui-core', 'jquery-ui-sortable' ), YIKES_STO_VERSION, true );
@@ -170,6 +191,8 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 
 		/**
 		 * Get the maximum tax_position for this taxonomy. This will be applied to terms that don't have a tax position.
+		 *
+		 * @param string $tax_slug The taxonomy slug.
 		 */
 		private function get_max_taxonomy_order( $tax_slug ) {
 			global $wpdb;
@@ -183,7 +206,7 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 				)
 			);
 			$max_term_order = is_array( $max_term_order ) ? current( $max_term_order ) : 0;
-			return (int) $max_term_order === 0 || empty( $max_term_order ) ? 1 : (int) $max_term_order + 1;
+			return (int) 0 === $max_term_order || empty( $max_term_order ) ? 1 : (int) $max_term_order + 1;
 		}
 
 		/**
@@ -191,9 +214,8 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 		 *
 		 * @param array $pieces     Array of SQL query clauses.
 		 * @param array $taxonomies Array of taxonomy names.
-		 * @param array $args       Array of term query args.
 		 */
-		public function set_tax_order( $pieces, $taxonomies, $args ) {
+		public function set_tax_order( $pieces, $taxonomies ) {
 			foreach ( $taxonomies as $taxonomy ) {
 				if ( $this->is_taxonomy_ordering_enabled( $taxonomy ) ) {
 					global $wpdb;
@@ -229,8 +251,9 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 				wp_send_json_error();
 			}
 
-			$taxonomy_ordering_data = filter_var_array( wp_unslash( $_POST['taxonomy_ordering_data'] ), FILTER_SANITIZE_NUMBER_INT );
-			$base_index             = filter_var( wp_unslash( $_POST['base_index'] ), FILTER_SANITIZE_NUMBER_INT ) ;
+			$taxonomy_ordering_data = filter_input( INPUT_POST, 'taxonomy_ordering_data', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
+			$base_index             = filter_input( INPUT_POST, 'base_index', FILTER_SANITIZE_NUMBER_INT );
+
 			foreach ( $taxonomy_ordering_data as $order_data ) {
 
 				// Due to the way WordPress shows parent categories on multiple pages, we need to check if the parent category's position should be updated.
@@ -243,22 +266,12 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 				}
 
 				update_term_meta( $order_data['term_id'], 'tax_position', ( (int) $order_data['order'] + (int) $base_index ) );
+
 			}
 
 			do_action( 'yikes_sto_taxonomy_order_updated', $taxonomy_ordering_data, $base_index );
 
 			wp_send_json_success();
-		}
-
-		/**
-		 * Add custom plugin links on the 'plugins.php' page.
-		 *
-		 * @param array $links Array of plugin action links.
-		 */
-		public function plugin_action_links( $links ) {
-			$links[] = '<a href="' . esc_url( admin_url( 'options-general.php?page=yikes-simple-taxonomy-ordering' ) ) . '" title="' . esc_attr__( 'Simple Taxonomy Ordering Settings', 'simple-taxonomy-ordering' ) . '">' . esc_html__( 'Settings', 'simple-taxonomy-ordering' ) . '</a>';
-			$links[] = '<a href="https://yikesplugins.com" target="_blank">' . esc_html__( 'More Plugins by YIKES', 'simple-taxonomy-ordering' ) . '</a>';
-			return $links;
 		}
 
 		/**
@@ -293,13 +306,4 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 	}
 }
 
-$yikes_custom_taxonomy_order = Yikes_Custom_Taxonomy_Order::get_instance();
-
-/**
- * Return .min if SCRIPT_DEBUG is not defined.
- *
- * @return string .min if SCRIPT_DEBUG is not defined.
- */
-function yikes_sto_maybe_minified() {
-	return defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-}
+Yikes_Custom_Taxonomy_Order::get_instance();

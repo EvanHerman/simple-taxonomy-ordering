@@ -1,1 +1,5 @@
 node_modules/
+vendor/
+build/
+.husky
+.DS_Store

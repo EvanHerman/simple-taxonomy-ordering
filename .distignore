@@ -3,6 +3,8 @@
 /.git
 /.github
 /node_modules
+vendor/
+build/
 
 # Files
 .distignore
@@ -15,4 +17,11 @@ README.md
 composer.json
 composer.lock
 package.json
-package-lock.json
+yarn.lock
+phpcs.xml
+phpunit.xml
+.husky
+.stylelintrc.json
+.stylelintignore
+.eslintrc.js
+.DS_Store

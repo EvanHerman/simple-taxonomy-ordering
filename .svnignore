@@ -1,5 +1,12 @@
 Gruntfile.js
 package.json
-package-lock.json
+yarn.lock
 README.md
 .gitignore
+phpcs.xml
+.husky
+.stylelintrc.json
+.stylelintignore
+.eslintrc.js
+build/
+.DS_Store
