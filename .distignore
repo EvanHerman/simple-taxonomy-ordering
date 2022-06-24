@@ -26,3 +26,4 @@ phpunit.xml
 .stylelintignore
 .eslintrc.js
 .DS_Store
+.phpunit.result.cache
