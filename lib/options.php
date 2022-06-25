@@ -71,7 +71,7 @@ if ( ! class_exists( 'YIKES_Simple_Taxonomy_Options' ) ) {
 						<?php
 							printf(
 								/* translators: %1$s is a link to https://www.evan-herman.com. %2$s is HTML markup for 5 stars. */
-								esc_html__( 'Simple Taxonomy Ordering was created by %1$s. If you are enjoying it, please leave us a %2$s review!', 'simple-taxonomy-ordering' ),
+								esc_html__( 'Simple Taxonomy Ordering is maintained by %1$s. If you are enjoying it, please leave a %2$s review!', 'simple-taxonomy-ordering' ),
 								'<a href="https://www.evan-herman.com" target="_blank" class="yikes-review-link">Evan Herman</a>',
 								'<a href="https://wordpress.org/support/plugin/simple-taxonomy-ordering/reviews/?rate=5#new-post" target="_blank" class="yikes-review-link"><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span></a>'
 							);
