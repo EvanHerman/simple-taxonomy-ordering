@@ -9,14 +9,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-06-25T03:02:12+00:00\n"
+"POT-Creation-Date: 2022-06-25T06:52:38+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: simple-taxonomy-ordering\n"
 
 #. Plugin Name of the plugin
 #: build/simple-taxonomy-ordering/lib/options.php:104
-#: lib/options.php:110
+#: lib/options.php:90
+#: lib/options.php:91
+#: lib/options.php:106
 msgid "Simple Taxonomy Ordering"
 msgstr ""
 
@@ -33,36 +35,32 @@ msgid "https://www.evan-herman.com"
 msgstr ""
 
 #. translators: %1$s is a link to https://www.evan-herman.com
-#. translators: %1$s is a link to https://www.evan-herman.com. %2$s is HTML markup for 5 stars.
 #: build/simple-taxonomy-ordering/lib/options.php:72
-#: lib/options.php:72
-msgid "Simple Taxonomy Ordering was created by %1$s. If you are enjoying it, please leave us a %2$s review!"
+msgid "Simple Taxonomy Ordering is maintained by %1$s. If you are enjoying it, please leave a %2$s review!"
 msgstr ""
 
 #: build/simple-taxonomy-ordering/lib/options.php:88
 #: build/simple-taxonomy-ordering/lib/options.php:89
-#: lib/options.php:94
-#: lib/options.php:95
-msgid "Simple Taxonomy Ordering"
+msgid "Simple Tax. Ordering"
 msgstr ""
 
 #: build/simple-taxonomy-ordering/lib/options.php:132
-#: lib/options.php:138
+#: lib/options.php:134
 msgid "Enabled Taxonomies"
 msgstr ""
 
 #: build/simple-taxonomy-ordering/lib/options.php:143
-#: lib/options.php:149
+#: lib/options.php:145
 msgid "Enable or disable taxonomies from being orderable by using the dropdown."
 msgstr ""
 
 #: build/simple-taxonomy-ordering/lib/options.php:172
-#: lib/options.php:183
+#: lib/options.php:179
 msgid "Select which taxonomies you would like to enable drag & drop sorting on."
 msgstr ""
 
 #: build/simple-taxonomy-ordering/lib/options.php:175
-#: lib/options.php:186
+#: lib/options.php:182
 msgid "No Taxonomies Found."
 msgstr ""
 
@@ -71,21 +69,26 @@ msgid "Taxonomy Ordering"
 msgstr ""
 
 #: build/simple-taxonomy-ordering/yikes-custom-taxonomy-order.php:133
-#: yikes-custom-taxonomy-order.php:147
+#: yikes-custom-taxonomy-order.php:98
 msgid "To reposition a taxonomy in the list, simply click on a taxonomy and drag & drop it into the desired position. Each time you reposition a taxonomy, the data will update in the database and on the front end of your site."
 msgstr ""
 
 #: build/simple-taxonomy-ordering/yikes-custom-taxonomy-order.php:133
-#: yikes-custom-taxonomy-order.php:147
+#: yikes-custom-taxonomy-order.php:98
 msgid "Example"
 msgstr ""
 
 #: build/simple-taxonomy-ordering/yikes-custom-taxonomy-order.php:133
-#: yikes-custom-taxonomy-order.php:147
+#: yikes-custom-taxonomy-order.php:98
 msgid "Simple Taxonomy Ordering Demo"
 msgstr ""
 
+#. translators: %1$s is a link to https://www.evan-herman.com. %2$s is HTML markup for 5 stars.
+#: lib/options.php:74
+msgid "Simple Taxonomy Ordering was created by %1$s. If you are enjoying it, please leave us a %2$s review!"
+msgstr ""
+
 #. translators: %s is the taxonomy singular name. eg: Category
-#: yikes-custom-taxonomy-order.php:144
+#: yikes-custom-taxonomy-order.php:95
 msgid "%s Ordering"
 msgstr ""
