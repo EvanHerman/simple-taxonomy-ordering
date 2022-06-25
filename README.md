@@ -16,20 +16,20 @@
 </p>
 
 <p align="center">
-	<a href="https://wordpress.org/" target="_blank">
-		<img src="https://img.shields.io/static/v1?label=&message=5.0+-+6.0&color=blue&style=flat-square&logo=wordpress&logoColor=white" alt="WordPress Versions">
-	</a>
-	<a href="https://www.php.net/" target="_blank">
-		<img src="https://img.shields.io/static/v1?label=&message=5.6+-+8.0&color=777bb4&style=flat-square&logo=php&logoColor=white" alt="PHP Versions">
-	</a>
-</p>
-
-<p align="center">
 	<a href="https://codeclimate.com/github/EvanHerman/simple-taxonomy-ordering/maintainability">
 		<img src="https://api.codeclimate.com/v1/badges/82ec3b9e928a60ba91d2/maintainability" />
 	</a>
 	<a href="https://codeclimate.com/github/EvanHerman/simple-taxonomy-ordering/test_coverage">
 		<img src="https://api.codeclimate.com/v1/badges/82ec3b9e928a60ba91d2/test_coverage" />
+	</a>
+</p>
+
+<p align="center">
+	<a href="https://wordpress.org/" target="_blank">
+		<img src="https://img.shields.io/static/v1?label=&message=5.0+-+6.0&color=blue&style=flat-square&logo=wordpress&logoColor=white" alt="WordPress Versions">
+	</a>
+	<a href="https://www.php.net/" target="_blank">
+		<img src="https://img.shields.io/static/v1?label=&message=5.6+-+8.0&color=777bb4&style=flat-square&logo=php&logoColor=white" alt="PHP Versions">
 	</a>
 </p>
 
