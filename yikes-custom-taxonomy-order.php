@@ -128,8 +128,13 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 				return;
 			}
 
-			$taxonomy       = get_taxonomy( $taxonomy );
-			$taxonomy_label = isset( $taxonomy->labels->singular_name ) ? $taxonomy->labels->singular_name : $taxonomy->labels;
+			$taxonomy = get_taxonomy( $taxonomy );
+
+			if ( ( ! isset( $taxonomy->labels ) || ! isset( $taxonomy->labels->singular_name ) ) && ! isset( $taxonomy->labels ) ) {
+				return;
+			}
+
+			$taxonomy_label = ( isset( $taxonomy->labels ) && isset( $taxonomy->labels->singular_name ) ) ? $taxonomy->labels->singular_name : $taxonomy->label;
 
 			$screen->add_help_tab(
 				array(
