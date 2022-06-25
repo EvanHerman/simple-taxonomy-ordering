@@ -3,15 +3,15 @@ module.exports = function(grunt) {
 
 	grunt.initConfig( {
 
-		pkg: grunt.file.readJSON('package.json'),
+		pkg: grunt.file.readJSON( 'package.json' ),
 
 		pot: {
 			options: {
 				text_domain: 'simple-taxonomy-ordering',
 				dest: 'languages/',
-						keywords: [
-							'__:1',
-							'_e:1',
+				keywords: [
+					'__:1',
+					'_e:1',
 					'_x:1,2c',
 					'esc_html__:1',
 					'esc_html_e:1',
