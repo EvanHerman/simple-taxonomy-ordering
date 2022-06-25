@@ -94,6 +94,6 @@ Issues
 ===========
 If you're running into any issues, we would love to hear about it. Please head over to the [Simple Taxonomy Ordering Issue Tracker](https://wordpress.org/support/plugin/simple-taxonomy-ordering/) and create a new issue.
 
-===========
+_________________
 
-<div style="text-align:center;font-weight:bold;">Originally built with <span style="color: #F3A4B2;">&hearts;</span> by YIKES Inc. in Philadelphia, PA.<br />Now Maintained by Evan Herman in Lancaster, PA</div>
+<div align="center" style="font-weight: bold;">Originally built with <span style="color: #F3A4B2;">&hearts;</span> by YIKES Inc. in Philadelphia, PA.<br />Now Maintained by Evan Herman in Lancaster, PA.</div>
