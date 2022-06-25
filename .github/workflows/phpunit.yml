@@ -36,13 +36,13 @@ jobs:
         run: sudo composer install
 
       - name: Run unit tests
-        run: yarn test:php-coverage-xml
+        run: yarn test:php-coverage-cli
 
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1.39
         if: always()
         with:
-          files: ".dev/tests/php/coverage/**/*.xml"
+          files: ".dev/tests/php/coverage/junit.xml"
 
       - name: Code Climate Test Reporter
         uses: aktions/codeclimate-test-reporter@v1
