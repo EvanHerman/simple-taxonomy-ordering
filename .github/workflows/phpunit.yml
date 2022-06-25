@@ -38,15 +38,14 @@ jobs:
       - name: Run unit tests
         run: yarn test:php-coverage-cli
 
-      - name: Publish Unit Test Results
+      - name: Comment Unit Test Results on PR
         uses: EnricoMi/publish-unit-test-result-action@v1.39
         if: always()
         with:
-          files: ".dev/tests/php/coverage/junit.xml"
+          files: "junit.xml"
 
-      - name: Code Climate Test Reporter
+      - name: Publish Unit Test Results to Code Climate
         uses: aktions/codeclimate-test-reporter@v1
         with:
           codeclimate-test-reporter-id: ${{ secrets.CODE_CLIMATE_TEST_REPORTER_ID }}
-          coverageLocations: ${{github.workspace}}/.dev/tests/php/coverage/clover.xml
           command: after-build --coverage-input-type clover
