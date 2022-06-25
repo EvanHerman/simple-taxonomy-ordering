@@ -12,3 +12,4 @@ build/
 .dev/
 .DS_Store
 .phpunit.result.cache
+.codeclimate.yml
