@@ -3,6 +3,7 @@
 	"title": "Simple Taxonomy Ordering",
 	"description": "This plugin offers a UI to enable/disable endpoints and meta data for CPTs and taxonomies using WordPress' REST API.",
 	"version": "2.3.4",
+	"tested_up_to": "6.0",
 	"author": "Evan Herman",
 	"license": "GPL-2.0",
 	"repository": "EvanHerman/simple-taxonomy-ordering",
@@ -24,7 +25,9 @@
 		"phpcs": "./vendor/bin/phpcs .",
 		"generate-pot": "wp i18n make-pot . languages/simple-taxonomy-ordering.pot --domain=simple-taxonomy-ordering --include=yikes-custom-taxonomy-order.php,lib/options.php --subtract-and-merge",
 		"watch": "npm-watch",
-		"prepare": "husky install"
+		"prepare": "husky install",
+		"version": "grunt version && yarn generate-pot && git add -A .",
+		"postversion": "git push && git push --tags"
 	},
 	"watch": {
 		"min": {
@@ -40,6 +43,8 @@
 	},
 	"devDependencies": {
 		"eslint": "^8.17.0",
+		"grunt": "^1.5.3",
+		"grunt-text-replace": "^0.4.0",
 		"husky": "^8.0.1",
 		"minify": "^9.1.0",
 		"npm-watch": "^0.11.0",
