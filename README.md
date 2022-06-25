@@ -26,7 +26,7 @@
 
 <p align="center">
 	<a href="https://wordpress.org/" target="_blank">
-		<img src="https://img.shields.io/static/v1?label=&message=5.0+-+6.0&color=blue&style=flat-square&logo=wordpress&logoColor=white" alt="WordPress Versions">
+		<img src="https://img.shields.io/static/v1?label=&message=4.4+-+6.0&color=blue&style=flat-square&logo=wordpress&logoColor=white" alt="WordPress Versions">
 	</a>
 	<a href="https://www.php.net/" target="_blank">
 		<img src="https://img.shields.io/static/v1?label=&message=5.6+-+8.0&color=777bb4&style=flat-square&logo=php&logoColor=white" alt="PHP Versions">
