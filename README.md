@@ -1,4 +1,4 @@
-<h1 align="center">Lity
+<h1 align="center">Simple Taxonomy Ordering
 	<a href="https://github.com/EvanHerman/Lity/releases/latest/">
 		<img src="https://img.shields.io/static/v1?pluginVersion=&message=v2.3.4&label=&color=999&style=flat-square">
 	</a>
@@ -23,11 +23,6 @@
 		<img src="https://img.shields.io/static/v1?label=&message=5.6+-+8.0&color=777bb4&style=flat-square&logo=php&logoColor=white" alt="PHP Versions">
 	</a>
 </p>
-
-Simple Taxonomy Ordering
-=============
-
-This plugin allows you to easily re-order taxonomy terms via drag and drop functionality, using the new term meta included in WordPress v4.4.
 
 Installation
 ===========
