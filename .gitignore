@@ -1,6 +1,7 @@
 node_modules/
 vendor/
 build/
+.dev/tests/php/coverage/
 .husky
 .DS_Store
 .phpunit.result.cache
