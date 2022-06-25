@@ -1,0 +1,33 @@
+---
+name: Tagged Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  tagged-release:
+    name: Tagged Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: GuillaumeFalourd/setup-rsync@v1
+
+      - name: Install yarn dependencies
+        run: yarn install
+
+      - name: Build the plugin
+        run: |
+          yarn min
+          sudo mkdir -p ./build/simple-taxonomy-ordering
+          sudo rsync -av --exclude-from .distignore --delete . ./build/simple-taxonomy-ordering/
+          cd ./build
+          sudo zip -r simple-taxonomy-ordering.zip simple-taxonomy-ordering/.
+      - uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: ./build/simple-taxonomy-ordering.zip

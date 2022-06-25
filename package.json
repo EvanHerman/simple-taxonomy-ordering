@@ -1,23 +1,54 @@
 {
-  "name": "simple-taxonomy-ordering",
-  "title": "YIKES Simple Taxonomy Ordering",
-  "version": "2.3.4",
-  "description": "This plugin offers a UI to enable/disable endpoints and meta data for CPTs and taxonomies using WordPress' REST API.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "YIKES, Inc.",
-  "site": "https://www.yikesinc.com",
-  "license": "GPLv2",
-  "dependencies": {
-    "grunt": "^1.0.4"
-  },
-  "devDependencies": {
-    "grunt-contrib-cssmin": "^3.0.0",
-    "grunt-contrib-uglify": "^4.0.1",
-    "grunt-pot": "^0.3.0",
-    "lodash": ">=4.17.19",
-    "minimatch": ">=3.0.2"
-  }
+	"name": "simple-taxonomy-ordering",
+	"title": "Simple Taxonomy Ordering",
+	"description": "This plugin offers a UI to enable/disable endpoints and meta data for CPTs and taxonomies using WordPress' REST API.",
+	"version": "2.3.4",
+	"tested_up_to": "6.0",
+	"author": "Evan Herman",
+	"license": "GPL-2.0",
+	"repository": "EvanHerman/simple-taxonomy-ordering",
+	"homepage": "https://wordpress.org/plugins/simple-taxonomy-ordering/",
+	"bugs": {
+		"url": "https://github.com/EvanHerman/yikes-inc-simple-taxonomy-ordering/issues"
+	},
+	"scripts": {
+		"build": "yarn min && rm -rf build/* && rsync -av --mkpath --exclude-from .distignore --delete . build/simple-taxonomy-ordering/ && cd build/ && zip -r simple-taxonomy-ordering.zip simple-taxonomy-ordering/.",
+		"min": "yarn min:css && yarn min:js",
+		"min:js": "minify ./lib/js/yikes-tax-drag-drop.js > ./lib/js/yikes-tax-drag-drop.min.js",
+		"min:css": "minify ./lib/css/yikes-tax-drag-drop.css > ./lib/css/yikes-tax-drag-drop.min.css",
+		"install:tests": ".dev/scripts/install-wp-tests.sh wordpress_test root password 127.0.0.1 latest",
+		"test:php": "./vendor/bin/phpunit --coverage-text",
+		"test:php-coverage": "./vendor/bin/phpunit --coverage-html .dev/tests/php/coverage/",
+		"lint": "yarn lint:css && yarn lint:js",
+		"lint:js": "yarn eslint 'lib/js/*.js'",
+		"lint:css": "yarn stylelint lib/css/*.css",
+		"phpcs": "./vendor/bin/phpcs .",
+		"generate-pot": "wp i18n make-pot . languages/simple-taxonomy-ordering.pot --domain=simple-taxonomy-ordering --include=yikes-custom-taxonomy-order.php,lib/options.php --subtract-and-merge",
+		"watch": "npm-watch",
+		"prepare": "husky install",
+		"version": "grunt version && yarn generate-pot && git add -A .",
+		"postversion": "git push && git push --tags"
+	},
+	"watch": {
+		"min": {
+			"patterns": [
+				"lib/js",
+				"lib/css"
+			],
+			"extensions": "js,css",
+			"quiet": true,
+			"runOnChangeOnly": true,
+			"ignore": "*.min.*"
+		}
+	},
+	"devDependencies": {
+		"eslint": "^8.17.0",
+		"grunt": "^1.5.3",
+		"grunt-text-replace": "^0.4.0",
+		"husky": "^8.0.1",
+		"minify": "^9.1.0",
+		"npm-watch": "^0.11.0",
+		"stylelint": "^14.9.1",
+		"stylelint-config-standard": "^26.0.0"
+	}
 }

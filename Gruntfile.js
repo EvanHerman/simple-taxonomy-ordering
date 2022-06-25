@@ -1,74 +1,81 @@
-'use strict';
-module.exports = function(grunt) {
+module.exports = function( grunt ) {
+	'use strict';
 
-  grunt.initConfig({
+	const pkg = grunt.file.readJSON( 'package.json' );
 
-		pkg: grunt.file.readJSON('package.json'),
+	grunt.initConfig( {
 
-    uglify: {
-      dist: {
-        files: {
-          'lib/js/init-select2.min.js': [
-            'lib/js/init-select2.js',
-          ],
-          'lib/js/yikes-tax-drag-drop.min.js': [
-            'lib/js/yikes-tax-drag-drop.js',
-          ],
-        }
-      }
-    },
+		pkg,
 
-    cssmin: {
-      target: {
-        files: [
-          {
-						'lib/css/yikes-tax-drag-drop.min.css':
-						[
-							'lib/css/yikes-tax-drag-drop.css',
-						],
-          }
-        ]
-      }
-    },
+		replace: {
+			php: {
+				src: [
+					'yikes-custom-taxonomy-order.php',
+					'lib/**/*.php',
+				],
+				overwrite: true,
+				replacements: [
+					{
+						from: /Version:(\s*?)[a-zA-Z0-9\.\-\+]+$/m,
+						to: 'Version:$1' + pkg.version,
+					},
+					{
+						from: /@since(.*?)NEXT/mg,
+						to: '@since$1' + pkg.version,
+					},
+					{
+						from: /Version:(\s*?)[a-zA-Z0-9\.\-\+]+$/m,
+						to: 'Version:$1' + pkg.version,
+					},
+					{
+						from: /define\(\s*'YIKES_STO_VERSION',\s*'(.*)'\s*\);/,
+						to: 'define( \'YIKES_STO_VERSION\', \'<%= pkg.version %>\' );',
+					},
+					{
+						from: /Tested up to:(\s*?)[a-zA-Z0-9\.\-\+]+$/m,
+						to: 'Tested up to:$1' + pkg.tested_up_to,
+					},
+				],
+			},
+			readme: {
+				src: 'readme.*',
+				overwrite: true,
+				replacements: [
+					{
+						from: /^(\*\*|)Stable tag:(\*\*|)(\s*?)[a-zA-Z0-9.-]+(\s*?)$/mi,
+						to: '$1Stable tag:$2$3<%= pkg.version %>$4',
+					},
+					{
+						from: /Tested up to:(\s*?)[a-zA-Z0-9\.\-\+]+$/m,
+						to: 'Tested up to:$1' + pkg.tested_up_to,
+					},
+				],
+			},
+			tests: {
+				src: '.dev/tests/phpunit/**/*.php',
+				overwrite: true,
+				replacements: [
+					{
+						from: /\'version\'(\s*?)\=\>(\s*?)\'(.*)\'/,
+						to: '\'version\' \=\> \'<%= pkg.version %>\'',
+					},
+				],
+			},
+			languages: {
+				src: 'languages/simple-taxonomy-ordering.pot',
+				overwrite: true,
+				replacements: [
+					{
+						from: /(Project-Id-Version: Simple Taxonomy Ordering )[0-9\.]+/,
+						to: '$1' + pkg.version,
+					},
+				],
+			},
+		},
 
-    pot: {
-      options: {
-        text_domain: 'simple-taxonomy-ordering', 
-        dest: 'languages/', 
-            keywords: [
-              '__:1',
-              '_e:1',
-          '_x:1,2c',
-          'esc_html__:1',
-          'esc_html_e:1',
-          'esc_html_x:1,2c',
-          'esc_attr__:1', 
-          'esc_attr_e:1', 
-          'esc_attr_x:1,2c', 
-          '_ex:1,2c',
-          '_n:1,2', 
-          '_nx:1,2,4c',
-          '_n_noop:1,2',
-          '_nx_noop:1,2,3c'
-        ],
-      },
-      files: {
-        src:  [ '**/*.php' ],
-        expand: true,
-      }
-    }
+	} );
 
-  });
+	grunt.loadNpmTasks( 'grunt-text-replace' );
 
-  // load tasks
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-pot');
-
-  // register task
-  grunt.registerTask('default', [
-		'uglify',
-    'cssmin',
-  ]);
-
+	grunt.registerTask( 'version', [ 'replace' ] );
 };

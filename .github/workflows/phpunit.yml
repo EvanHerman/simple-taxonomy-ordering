@@ -1,0 +1,33 @@
+---
+name: PHPUnit Tests
+
+on: push
+
+jobs:
+  phpunit:
+    name: PHPUnit
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_ROOT_PASSWORD: password
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: php-actions/composer@v5
+
+      - name: Install Tests
+        run: yarn install:tests
+
+      - name: Composer Install
+        run: sudo composer install
+
+      - name: Run unit tests
+        run: yarn test:php
