@@ -1,5 +1,5 @@
 <h1 align="center">Simple Taxonomy Ordering
-	<a href="https://github.com/EvanHerman/Lity/releases/latest/">
+	<a href="https://github.com/EvanHerman/simple-taxonomy-ordering/releases/latest/">
 		<img src="https://img.shields.io/static/v1?pluginVersion=&message=v2.3.4&label=&color=999&style=flat-square">
 	</a>
 </h1>
