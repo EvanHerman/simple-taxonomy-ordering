@@ -155,14 +155,19 @@ class YIKES_Simple_Taxonomy_Options {
 			<?php
 			foreach ( $taxonomies as $taxonomy ) {
 				$tax_object = get_taxonomy( $taxonomy );
-				if ( ! $tax_object ) {
+				if ( ! $tax_object || ! isset( $tax_object->label ) ) {
 					continue;
 				}
 				$tax_name         = $tax_object->label;
 				$post_type        = isset( $tax_object->object_type ) && isset( $tax_object->object_type[0] ) ? $tax_object->object_type[0] : 'post';
 				$post_type_object = get_post_type_object( $post_type );
-				$post_type_label  = $post_type_object->label;
-				$selected         = array_key_exists( $taxonomy, $enabled ) ? 'selected="selected"' : '';
+
+				if ( ! isset( $post_type_object->label ) ) {
+					continue;
+				}
+
+				$post_type_label = $post_type_object->label;
+				$selected        = array_key_exists( $taxonomy, $enabled ) ? 'selected="selected"' : '';
 				?>
 					<option value="<?php echo esc_attr( $taxonomy ); ?>" <?php echo esc_attr( $selected ); ?>><?php echo esc_html( ucwords( $tax_name ) ) . ' <small>(' . esc_html( $post_type_label ) . ')</small>'; ?></option>
 				<?php
