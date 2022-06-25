@@ -38,9 +38,6 @@
 			"ignore": "*.min.*"
 		}
 	},
-	"dependencies": {
-		"grunt": "^1.5.3"
-	},
 	"devDependencies": {
 		"eslint": "^8.17.0",
 		"husky": "^8.0.1",
