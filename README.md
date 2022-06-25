@@ -87,7 +87,7 @@ With the release of WordPress 4.4 came taxonomy meta data, which gets stored ins
 
 Filters
 ===========
-* `yikes_simple_taxonomy_ordering_capabilities` - Filter to adjust who can access the 'Simple Tax. Ordering' settings page.
+* `yikes_simple_taxonomy_ordering_capabilities` - Filter to adjust who can access the 'Simple Taxonomy Ordering' settings page.
 * `yikes_simple_taxonomy_ordering_excluded_taxonomies` - Filter to add additional taxonomies or remove default taxonomies. Items in this array will **not** be displayed in the dropdown on the settings page, and thus cannot have drag and drop sorting enabled.
 
 Issues

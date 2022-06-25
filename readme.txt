@@ -31,7 +31,7 @@ On the front end of the site your taxonomy terms will display in the order set i
 
 * Unzip and upload contents to your plugins directory (usually wp-content/plugins/).
 * Activate the plugin.
-* Head to the settings page, 'Settings > Simple Tax. Ordering'.
+* Head to the settings page, 'Settings > Simple Taxonomy Ordering'.
 * Select the taxonomies you want to enable drag and drop ordering on. Save the settings.
 * Head to the taxonomy edit page and re-order the taxonomies as needed.
 * Profit

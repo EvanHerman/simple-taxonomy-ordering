@@ -1,103 +1,91 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the simple-taxonomy-ordering package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# Copyright (C) 2022 Evan Herman
+# This file is distributed under the same license as the Simple Taxonomy Ordering plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: simple-taxonomy-ordering 2.0.3\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-04 08:13-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Project-Id-Version: Simple Taxonomy Ordering 2.3.4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/yikes-inc-simple-taxonomy-ordering\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"POT-Creation-Date: 2022-06-25T03:02:12+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.5.0\n"
+"X-Domain: simple-taxonomy-ordering\n"
 
-#: lib/options.php:60
-#, php-format
-msgid ""
-"Simple Taxonomy Ordering was created by %1$s. If you are enjoying it, please "
-"leave us a %2$s review!"
+#. Plugin Name of the plugin
+#: build/simple-taxonomy-ordering/lib/options.php:104
+#: lib/options.php:110
+msgid "Simple Taxonomy Ordering"
 msgstr ""
 
-#: lib/options.php:74 lib/options.php:75
-msgid "Simple Tax. Ordering"
+#. Description of the plugin
+msgid "Custom drag & drop taxonomy ordering."
 msgstr ""
 
-#: lib/options.php:90
-msgid "YIKES Simple Taxonomy Ordering"
+#. Author of the plugin
+msgid "Evan Herman"
 msgstr ""
 
-#: lib/options.php:118
+#. Author URI of the plugin
+msgid "https://www.evan-herman.com"
+msgstr ""
+
+#. translators: %1$s is a link to https://www.evan-herman.com
+#. translators: %1$s is a link to https://www.evan-herman.com. %2$s is HTML markup for 5 stars.
+#: build/simple-taxonomy-ordering/lib/options.php:72
+#: lib/options.php:72
+msgid "Simple Taxonomy Ordering was created by %1$s. If you are enjoying it, please leave us a %2$s review!"
+msgstr ""
+
+#: build/simple-taxonomy-ordering/lib/options.php:88
+#: build/simple-taxonomy-ordering/lib/options.php:89
+#: lib/options.php:94
+#: lib/options.php:95
+msgid "Simple Taxonomy Ordering"
+msgstr ""
+
+#: build/simple-taxonomy-ordering/lib/options.php:132
+#: lib/options.php:138
 msgid "Enabled Taxonomies"
 msgstr ""
 
-#: lib/options.php:129
-msgid ""
-"Enable or disable taxonomies from being orderable by using the dropdown."
+#: build/simple-taxonomy-ordering/lib/options.php:143
+#: lib/options.php:149
+msgid "Enable or disable taxonomies from being orderable by using the dropdown."
 msgstr ""
 
-#: lib/options.php:157
-msgid ""
-"Select which taxonomies you would like to enable drag & drop sorting on."
+#: build/simple-taxonomy-ordering/lib/options.php:172
+#: lib/options.php:183
+msgid "Select which taxonomies you would like to enable drag & drop sorting on."
 msgstr ""
 
-#: lib/options.php:160
+#: build/simple-taxonomy-ordering/lib/options.php:175
+#: lib/options.php:186
 msgid "No Taxonomies Found."
 msgstr ""
 
-#: node_modules/grunt-pot/test/fixtures/some-file.php:3
-msgid "I'm a translatable string."
-msgstr ""
-
-#: node_modules/grunt-pot/test/fixtures/some-other-file.php:4
-msgid "Me too"
-msgstr ""
-
-#: node_modules/grunt-pot/test/fixtures/some-other-file.php:7
-#, php-format
-msgid "I have %d apple"
-msgid_plural "I have %d apples"
-msgstr[0] ""
-msgstr[1] ""
-
-#. / TRANSLATORS: This should be translated as a shorthand for YEAR-MONTH-DAY using 4, 2 and 2 digits.
-#: node_modules/grunt-pot/test/fixtures/some-other-file.php:16
-msgid "yyyy-mm-dd"
-msgstr ""
-
-#: yikes-custom-taxonomy-order.php:94
+#: build/simple-taxonomy-ordering/yikes-custom-taxonomy-order.php:132
 msgid "Taxonomy Ordering"
 msgstr ""
 
-#: yikes-custom-taxonomy-order.php:95
-msgid ""
-"To reposition a taxonomy in the list, simply click on a taxonomy and drag & "
-"drop it into the desired position. Each time you reposition a taxonomy, the "
-"data will update in the database and on the front end of your site."
+#: build/simple-taxonomy-ordering/yikes-custom-taxonomy-order.php:133
+#: yikes-custom-taxonomy-order.php:147
+msgid "To reposition a taxonomy in the list, simply click on a taxonomy and drag & drop it into the desired position. Each time you reposition a taxonomy, the data will update in the database and on the front end of your site."
 msgstr ""
 
-#: yikes-custom-taxonomy-order.php:95
+#: build/simple-taxonomy-ordering/yikes-custom-taxonomy-order.php:133
+#: yikes-custom-taxonomy-order.php:147
 msgid "Example"
 msgstr ""
 
-#: yikes-custom-taxonomy-order.php:95
+#: build/simple-taxonomy-ordering/yikes-custom-taxonomy-order.php:133
+#: yikes-custom-taxonomy-order.php:147
 msgid "Simple Taxonomy Ordering Demo"
 msgstr ""
 
-#: yikes-custom-taxonomy-order.php:230
-msgid "Simple Taxonomy Ordering Settings"
-msgstr ""
-
-#: yikes-custom-taxonomy-order.php:230
-msgid "Settings"
-msgstr ""
-
-#: yikes-custom-taxonomy-order.php:231
-msgid "More Plugins by YIKES"
+#. translators: %s is the taxonomy singular name. eg: Category
+#: yikes-custom-taxonomy-order.php:144
+msgid "%s Ordering"
 msgstr ""

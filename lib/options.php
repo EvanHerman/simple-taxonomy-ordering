@@ -68,10 +68,16 @@ class YIKES_Simple_Taxonomy_Options {
 				<em>
 					<?php
 						printf(
-							/* translators: %1$s is a link to https://www.evan-herman.com */
+							/* translators: %1$s is a link to https://www.evan-herman.com. %2$s is HTML markup for 5 stars. */
 							esc_html__( 'Simple Taxonomy Ordering was created by %1$s. If you are enjoying it, please leave us a %2$s review!', 'simple-taxonomy-ordering' ),
 							'<a href="https://www.evan-herman.com" target="_blank" class="yikes-review-link">Evan Herman</a>',
-							'<a href="https://wordpress.org/support/plugin/simple-taxonomy-ordering/reviews/?rate=5#new-post" target="_blank" class="yikes-review-link"><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span><span class="dashicons dashicons-star-filled yikes-sto-review-star"></span></a>'
+							'<a href="https://wordpress.org/support/plugin/simple-taxonomy-ordering/reviews/?rate=5#new-post" target="_blank" class="yikes-review-link">
+								<span class="dashicons dashicons-star-filled yikes-sto-review-star"></span>
+								<span class="dashicons dashicons-star-filled yikes-sto-review-star"></span>
+								<span class="dashicons dashicons-star-filled yikes-sto-review-star"></span>
+								<span class="dashicons dashicons-star-filled yikes-sto-review-star"></span>
+								<span class="dashicons dashicons-star-filled yikes-sto-review-star"></span>
+							</a>'
 						);
 					?>
 				</em>
@@ -85,8 +91,8 @@ class YIKES_Simple_Taxonomy_Options {
 	public function define_options_page() {
 		add_submenu_page(
 			'options-general.php',
-			__( 'Simple Tax. Ordering', 'simple-taxonomy-ordering' ),
-			__( 'Simple Tax. Ordering', 'simple-taxonomy-ordering' ),
+			__( 'Simple Taxonomy Ordering', 'simple-taxonomy-ordering' ),
+			__( 'Simple Taxonomy Ordering', 'simple-taxonomy-ordering' ),
 			apply_filters( 'yikes_simple_taxonomy_ordering_capabilities', 'manage_options' ),
 			'yikes-simple-taxonomy-ordering',
 			array( $this, 'create_admin_page' )

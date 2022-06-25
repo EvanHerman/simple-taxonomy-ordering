@@ -22,6 +22,7 @@
 		"lint:js": "yarn eslint 'lib/js/*.js'",
 		"lint:css": "yarn stylelint lib/css/*.css",
 		"phpcs": "./vendor/bin/phpcs .",
+		"generate-pot": "wp i18n make-pot . languages/simple-taxonomy-ordering.pot --domain=simple-taxonomy-ordering --include=yikes-custom-taxonomy-order.php,lib/options.php --subtract-and-merge",
 		"watch": "npm-watch",
 		"prepare": "husky install"
 	},
