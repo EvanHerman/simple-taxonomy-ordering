@@ -30,4 +30,17 @@ jobs:
         run: sudo composer install
 
       - name: Run unit tests
-        run: yarn test:php
+        run: yarn test:php-coverage-xml
+
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1.39
+        if: always()
+        with:
+          files: ".dev/tests/php/coverage/**/*.xml"
+
+      - name: Publish Unit Test Results to Code Climate
+        uses: paambaati/codeclimate-action@v2.2.4
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_TEST_REPORTER_ID }}
+        with:
+          coverageLocations: ${{github.workspace}}/.dev/tests/php/coverage/clover.xml
