@@ -12,6 +12,20 @@
  * @package YIKES_Simple_Taxonomy_Ordering
  */
 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+
+	exit;
+
+}
+
+define( 'YIKES_STO_VERSION', '2.3.4' );
+define( 'YIKES_STO_PATH', plugin_dir_path( __FILE__ ) );
+define( 'YIKES_STO_URL', plugin_dir_url( __FILE__ ) );
+define( 'YIKES_STO_NAME', plugin_basename( __FILE__ ) );
+define( 'YIKES_STO_OPTION_NAME', 'yikes_simple_taxonomy_ordering_options' );
+define( 'YIKES_STO_SELECT2_VERSION', '4.1.0-rc.0' );
+
 // Only load class if it hasn't already been loaded.
 if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 
@@ -21,37 +35,12 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 	class Yikes_Custom_Taxonomy_Order {
 
 		/**
-		 * Unique instance of this plugin.
-		 *
-		 * @var Yikes_Custom_Taxonomy_Order
-		 */
-		private static $instance;
-
-		/**
-		 * Return an instance of our plugin.
-		 *
-		 * @return Yikes_Custom_Taxonomy_Order
-		 */
-		public static function get_instance() {
-
-			if ( null === self::$instance ) {
-
-				self::$instance = new self();
-
-			}
-
-			return self::$instance;
-
-		}
-
-		/**
 		 * Main Constructor.
 		 */
 		public function __construct() {
 
 			// Setup.
-			$this->define_constants();
-			$this->include_files();
+			include YIKES_STO_PATH . 'lib/options.php';
 
 			// Hooks.
 			add_action( 'current_screen', array( $this, 'admin_order_terms' ) );
@@ -59,44 +48,6 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 			add_action( 'wp_ajax_yikes_sto_update_taxonomy_order', array( $this, 'update_taxonomy_order' ) );
 			add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
 
-		}
-
-		/**
-		 * Define our constants.
-		 */
-		private function define_constants() {
-			if ( ! defined( 'YIKES_STO_VERSION' ) ) {
-				define( 'YIKES_STO_VERSION', '2.3.4' );
-			}
-
-			if ( ! defined( 'YIKES_STO_PATH' ) ) {
-				define( 'YIKES_STO_PATH', plugin_dir_path( __FILE__ ) );
-			}
-
-			if ( ! defined( 'YIKES_STO_URL' ) ) {
-				define( 'YIKES_STO_URL', plugin_dir_url( __FILE__ ) );
-			}
-
-			if ( ! defined( 'YIKES_STO_NAME' ) ) {
-				define( 'YIKES_STO_NAME', plugin_basename( __FILE__ ) );
-			}
-
-			if ( ! defined( 'YIKES_STO_OPTION_NAME' ) ) {
-				define( 'YIKES_STO_OPTION_NAME', 'yikes_simple_taxonomy_ordering_options' );
-			}
-
-			if ( ! defined( 'YIKES_STO_SELECT2_VERSION' ) ) {
-				define( 'YIKES_STO_SELECT2_VERSION', '4.1.0-rc.0' );
-			}
-		}
-
-		/**
-		 * Include our files.
-		 */
-		private function include_files() {
-			if ( ! class_exists( 'YIKES_Simple_Taxonomy_Options' ) ) {
-				include YIKES_STO_PATH . 'lib/options.php';
-			}
 		}
 
 		/**
@@ -285,17 +236,11 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 		 * @param string $tax_slug the taxnomies slug.
 		 */
 		public function is_taxonomy_ordering_enabled( $tax_slug ) {
-			$option_default = array( 'enabled_taxonomies' => array() );
-			$option         = get_option( YIKES_STO_OPTION_NAME, $option_default );
+			$option_default     = array( 'enabled_taxonomies' => array() );
+			$option             = get_option( YIKES_STO_OPTION_NAME, $option_default );
+			$enabled_taxonomies = array_flip( $option['enabled_taxonomies'] );
 
-			if ( isset( $option['enabled_taxonomies'] ) ) {
-				$option = array_flip( $option['enabled_taxonomies'] );
-
-				return isset( $option[ $tax_slug ] );
-			}
-
-			// Return false if the option doesn't exist.
-			return false;
+			return isset( $enabled_taxonomies[ $tax_slug ] );
 		}
 
 		/**
@@ -311,4 +256,4 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 	}
 }
 
-Yikes_Custom_Taxonomy_Order::get_instance();
+new Yikes_Custom_Taxonomy_Order();

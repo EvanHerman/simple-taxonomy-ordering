@@ -29,7 +29,7 @@ Installation
 1. Install and activate the plugin
 2. If you need to enable term sorting on default WordPress taxonomies, please see below.
 3. If you would like to enable taxonomy term sorting on custom post type taxonomies, please see below.
-4. Once enabled, you can drag & drop re-order your taxonomy terms. Whenever '[get_terms()](https://codex.wordpress.org/Function_Reference/get_terms)' is used to display your terms, they will display in the order you've set.
+4. Once enabled, you can drag & drop re-order your taxonomy terms. Whenever '[get_terms()](https://developer.wordpress.org/reference/functions/get_terms/)' is used to display your terms, they will display in the order you've set.
 
 Usage
 ===========
@@ -61,7 +61,7 @@ Alternatively, if you've defined a custom taxonomy that you'd like to allow drag
 
 
 #### Front End
-On the front end of the site, anywhere [get_terms()](https://codex.wordpress.org/Function_Reference/get_terms) is used to query a set of taxonomy terms, they will be returned in the order of their position on the taxonomy list. No additional steps need to be taken on on your end.
+On the front end of the site, anywhere [get_terms()](https://developer.wordpress.org/reference/functions/get_terms/) is used to query a set of taxonomy terms, they will be returned in the order of their position on the taxonomy list. No additional steps need to be taken on on your end.
 
 Example
 =========

@@ -7,7 +7,7 @@
 	convertWarningsToExceptions="true"
 	>
 	<testsuites>
-		<testsuite name="Lity Test Suite">
+		<testsuite name="Simple Taxonomy Ordering Test Suite">
 			<directory prefix="test-" suffix=".php">./.dev/tests/php/</directory>
 		</testsuite>
 	</testsuites>
