@@ -1,14 +1,14 @@
 ---
-name: Pre-Release
+name: Tagged Release
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - "v*"
 
 jobs:
-  pre-release:
-    name: Pre Release
+  tagged-release:
+    name: Tagged Release
     runs-on: ubuntu-latest
 
     steps:
@@ -23,14 +23,11 @@ jobs:
         run: |
           yarn min
           sudo mkdir -p ./build/simple-taxonomy-ordering
-          sudo rsync -av --exclude-from .distignore --delete . build/simple-taxonomy-ordering/
+          sudo rsync -av --exclude-from .distignore --delete . ./build/simple-taxonomy-ordering/
           cd ./build
           sudo zip -r simple-taxonomy-ordering.zip simple-taxonomy-ordering/.
-
       - uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: latest
-          prerelease: true
-          title: Development Build
+          prerelease: false
           files: ./build/simple-taxonomy-ordering.zip
