@@ -24,6 +24,15 @@
 	</a>
 </p>
 
+<p align="center">
+	<a href="https://codeclimate.com/github/EvanHerman/simple-taxonomy-ordering/maintainability">
+		<img src="https://api.codeclimate.com/v1/badges/82ec3b9e928a60ba91d2/maintainability" />
+	</a>
+	<a href="https://codeclimate.com/github/EvanHerman/simple-taxonomy-ordering/test_coverage">
+		<img src="https://api.codeclimate.com/v1/badges/82ec3b9e928a60ba91d2/test_coverage" />
+	</a>
+</p>
+
 Installation
 ===========
 1. Install and activate the plugin
