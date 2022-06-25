@@ -49,3 +49,4 @@ jobs:
         with:
           codeclimate-test-reporter-id: ${{ secrets.CODE_CLIMATE_TEST_REPORTER_ID }}
           coverageLocations: ${{github.workspace}}/.dev/tests/php/coverage/clover.xml
+          command: after-build --coverage-input-type clover
