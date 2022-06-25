@@ -23,6 +23,9 @@ jobs:
 
       - uses: php-actions/composer@v5
 
+      - name: Xdebug Action
+        uses: MilesChou/docker-xdebug@master
+
       - name: Install Tests
         run: yarn install:tests
 
