@@ -207,6 +207,10 @@ if ( ! class_exists( 'Yikes_Custom_Taxonomy_Order' ) ) {
 				wp_send_json_error();
 			}
 
+			if ( ! current_user_can( 'manage_categories' ) ) {
+				wp_send_json_error();
+			}
+
 			$taxonomy_ordering_data = filter_input( INPUT_POST, 'taxonomy_ordering_data', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
 			$base_index             = filter_input( INPUT_POST, 'base_index', FILTER_SANITIZE_NUMBER_INT );
 
